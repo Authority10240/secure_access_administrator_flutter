@@ -9,20 +9,19 @@ import 'package:secure_access_administrator/features/dashboard/data/models/dashb
 @Injectable(as: DashboardService)
 class DashboardServiceImpl extends DashboardService{
 
-  DashboardServiceImpl(){
-    _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
+  DashboardServiceImpl(){}
+
+
+
+
+  @override
+  Stream<QuerySnapshot<DashboardGetVisitationsModel>> dashboardGetVisitations({required String date}) {
+
+    CollectionReference<DashboardGetVisitationsModel> _visitationsRef; _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
         .withConverter<DashboardGetVisitationsModel>(
         fromFirestore: (snapShot,_)=> DashboardGetVisitationsModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());
 
-
-  }
-
-
-  late  CollectionReference<DashboardGetVisitationsModel> _visitationsRef;
-
-  @override
-  Stream<QuerySnapshot<DashboardGetVisitationsModel>> dashboardGetVisitations({required String date}) {
     Stream<QuerySnapshot<DashboardGetVisitationsModel>> list = _visitationsRef.where('date',isEqualTo: date).snapshots();
     return  list;
   }

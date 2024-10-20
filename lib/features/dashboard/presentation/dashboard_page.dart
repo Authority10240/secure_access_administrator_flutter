@@ -105,8 +105,8 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 200, child:
+                        Container(color: Colors.white,height: 200,
+                           child:
                         ListView(
                           scrollDirection: Axis.horizontal,
                           children: [

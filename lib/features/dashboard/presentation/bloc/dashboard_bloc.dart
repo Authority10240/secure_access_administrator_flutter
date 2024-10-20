@@ -11,7 +11,6 @@ import 'package:secure_access_administrator/core/extensions/date_extension.dart'
 import 'package:intl/intl.dart';
 import 'package:secure_access_administrator/core/failures/runtime_exception.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/dashboard/domain/use_cases/dashboard_usecase/dashboard_get_visitations_usecase.dart';
 import 'package:secure_access_administrator/features/dashboard/domain/use_cases/dashboard_usecase/dashboard_page_load_visitation_vehicle_usecase.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
@@ -50,6 +49,15 @@ class DashboardBloc
     final DashboardGetVisitationsUseCase getCalenderDateVisitations;
     final DashboardPageLoadVisitationVehicleUseCase dashboardPageLoadVisitationVehicleUseCase;
 
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? todaysVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? yesterdaysVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? twoDaysBackVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? threeDaysBackVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fourDaysBackVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fiveDaysBackVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? sixDaysBackVisitations;
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? calenderDayVisitations;
+
     DateTime currentDate = DateTime.now();
     DateTime currentDate2 = DateTime.now();
     String currentMonth = DateFormat('yMMM','en_us').format(DateTime.now());
@@ -64,75 +72,28 @@ class DashboardBloc
             // get calender dat visitations
             await getCalenderDateVisitations.call(
                 onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: model
-                    )
-                        ..dataState = DataState.success),
+                calenderDayVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().toString().toFormattedDate()));
 
             // gets todays visitations
             await getTodaysVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: model,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => todaysVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().toString().toFormattedDate()));
 
             // get yesterdays values
             await getYesterdaysVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: model,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => yesterdaysVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().subtract(const Duration(days: 1)).toString().toFormattedDate()));
 
             // get 2 days back values
             await get2DaysBackVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: model,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => twoDaysBackVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().subtract(const Duration(days: 2)).toString().toFormattedDate()));
@@ -140,18 +101,7 @@ class DashboardBloc
 
             // get 3 days back values
             await get3DaysBackVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: model,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => threeDaysBackVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().subtract(const Duration(days: 3)).toString().toFormattedDate()));
@@ -159,38 +109,14 @@ class DashboardBloc
 
             // get 4 days back values
             await get4DaysBackVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: model,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => fourDaysBackVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().subtract(const Duration(days: 4)).toString().toFormattedDate()));
 
             // get 5 days back values
             await get5DaysBackVisitations.call(
-                onSuccess: (model) =>
-                    emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: model,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
-                        sixDaysBackVisitations: state.sixDaysBackVisitations,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
-                    )
-                        ..dataState = DataState.success),
+                onSuccess: (model) => fiveDaysBackVisitations = model,
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
                 params: DashboardGetVisitationsUseCaseParams(
                     date: DateTime.now().subtract(const Duration(days: 5)).toString().toFormattedDate()));
@@ -199,15 +125,14 @@ class DashboardBloc
             await get6DaysBackVisitations.call(
                 onSuccess: (model) =>
                     emit(DashboardPageGetVisitationState(
-                        fiveDaysBackVisitations: state.fiveDaysBackVisitations,
-                        fourDaysBackVisitations: state.fourDaysBackVisitations,
+                        fiveDaysBackVisitations: fiveDaysBackVisitations,
+                        fourDaysBackVisitations: fourDaysBackVisitations,
                         sixDaysBackVisitations: model,
-                        threeDaysBackVisitations: state
-                            .threeDaysBackVisitations,
-                        todaysVisitations: state.todaysVisitations,
-                        twoDaysBackVisitations: state.twoDaysBackVisitations,
-                        yesterdaysVisitations: state.yesterdaysVisitations,
-                        calenderDayVisitations: state.calenderDayVisitations
+                        threeDaysBackVisitations: threeDaysBackVisitations,
+                        todaysVisitations: todaysVisitations,
+                        twoDaysBackVisitations: twoDaysBackVisitations,
+                        yesterdaysVisitations: yesterdaysVisitations,
+                        calenderDayVisitations: calenderDayVisitations
                     )
                         ..dataState = DataState.success),
                 onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),

@@ -5,7 +5,7 @@ import 'package:secure_access_administrator/core/failures/base_failure.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/domain/repository/dashboard_repository/dashboard_get_visitations_repository.dart';
 
-@Injectable()
+@injectable
 class DashboardGetVisitationsUseCase extends BaseUseCase<DashboardGetVisitationsUseCaseParams, Stream<QuerySnapshot<DashboardGetVisitationsModel>>>{
 
   final DashboardGetVisitationsRepository dashboardGetVisitationsRepository;
