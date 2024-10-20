@@ -32,6 +32,7 @@ mixin _$DashboardGetVisitationsModel {
   String? get date => throw _privateConstructorUsedError;
   String? get unit => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
 
   /// Serializes this DashboardGetVisitationsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +63,8 @@ abstract class $DashboardGetVisitationsModelCopyWith<$Res> {
       String? email,
       String? date,
       String? unit,
-      String? time});
+      String? time,
+      String? id});
 }
 
 /// @nodoc
@@ -92,6 +94,7 @@ class _$DashboardGetVisitationsModelCopyWithImpl<$Res,
     Object? date = freezed,
     Object? unit = freezed,
     Object? time = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       identificationNumber: freezed == identificationNumber
@@ -138,6 +141,10 @@ class _$DashboardGetVisitationsModelCopyWithImpl<$Res,
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -162,7 +169,8 @@ abstract class _$$DashboardGetVisitationsModelImplCopyWith<$Res>
       String? email,
       String? date,
       String? unit,
-      String? time});
+      String? time,
+      String? id});
 }
 
 /// @nodoc
@@ -191,6 +199,7 @@ class __$$DashboardGetVisitationsModelImplCopyWithImpl<$Res>
     Object? date = freezed,
     Object? unit = freezed,
     Object? time = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$DashboardGetVisitationsModelImpl(
       identificationNumber: freezed == identificationNumber
@@ -237,6 +246,10 @@ class __$$DashboardGetVisitationsModelImplCopyWithImpl<$Res>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -257,7 +270,8 @@ class _$DashboardGetVisitationsModelImpl
       required this.email,
       required this.date,
       required this.unit,
-      required this.time});
+      required this.time,
+      required this.id});
 
   factory _$DashboardGetVisitationsModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -285,10 +299,12 @@ class _$DashboardGetVisitationsModelImpl
   final String? unit;
   @override
   final String? time;
+  @override
+  final String? id;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardGetVisitationsModel(identificationNumber: $identificationNumber, identificationType: $identificationType, firstName: $firstName, middleName: $middleName, lastName: $lastName, transportationType: $transportationType, mobileNumber: $mobileNumber, email: $email, date: $date, unit: $unit, time: $time)';
+    return 'DashboardGetVisitationsModel(identificationNumber: $identificationNumber, identificationType: $identificationType, firstName: $firstName, middleName: $middleName, lastName: $lastName, transportationType: $transportationType, mobileNumber: $mobileNumber, email: $email, date: $date, unit: $unit, time: $time, id: $id)';
   }
 
   @override
@@ -306,7 +322,8 @@ class _$DashboardGetVisitationsModelImpl
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('date', date))
       ..add(DiagnosticsProperty('unit', unit))
-      ..add(DiagnosticsProperty('time', time));
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -331,7 +348,8 @@ class _$DashboardGetVisitationsModelImpl
             (identical(other.email, email) || other.email == email) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.time, time) || other.time == time));
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -348,7 +366,8 @@ class _$DashboardGetVisitationsModelImpl
       email,
       date,
       unit,
-      time);
+      time,
+      id);
 
   /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -381,7 +400,8 @@ abstract class _DashboardGetVisitationsModel
       required final String? email,
       required final String? date,
       required final String? unit,
-      required final String? time}) = _$DashboardGetVisitationsModelImpl;
+      required final String? time,
+      required final String? id}) = _$DashboardGetVisitationsModelImpl;
 
   factory _DashboardGetVisitationsModel.fromJson(Map<String, dynamic> json) =
       _$DashboardGetVisitationsModelImpl.fromJson;
@@ -408,6 +428,8 @@ abstract class _DashboardGetVisitationsModel
   String? get unit;
   @override
   String? get time;
+  @override
+  String? get id;
 
   /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.

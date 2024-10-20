@@ -20,6 +20,7 @@ _$DashboardGetVisitationsModelImpl _$$DashboardGetVisitationsModelImplFromJson(
       date: json['date'] as String?,
       unit: json['unit'] as String?,
       time: json['time'] as String?,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$$DashboardGetVisitationsModelImplToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$DashboardGetVisitationsModelImplToJson(
       'date': instance.date,
       'unit': instance.unit,
       'time': instance.time,
+      'id': instance.id,
     };

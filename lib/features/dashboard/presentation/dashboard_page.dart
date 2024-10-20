@@ -203,15 +203,12 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                               child: Padding(padding: EdgeInsets.all(20), child: Column(
                                 children: [
                                   Text(appLocalizations.visitations,style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
-                                  20.height,
-                                  mediumSpacer,
+
                                   StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
                                       stream: state.calenderDayVisitations,
                                       builder: (context, snapshot){
                                         List<QueryDocumentSnapshot<DashboardGetVisitationsModel?>>? data = snapshot.data?.docs??[];
-                                        return ListView.builder(
-                                            shrinkWrap: true,
-                                            physics: const NeverScrollableScrollPhysics(),
+                                        return Expanded(child: ListView.builder(
                                             itemCount: snapshot.data?.docs.length??0,
                                             itemBuilder: (context, index){
                                               DashboardGetVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
@@ -230,13 +227,13 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                                                     onTap: (){
                                                       if(visitation?.transportationType == TransportationType.driveIn.toString()) {
                                                         getBloc().add(DashBoardPageLoadVisitationVehicleEvent(
-                                                            visitationId: visitation!.identificationNumber!,
+                                                            visitationId: visitationId!,
                                                             dashboardGetVisitationsModel: visitation!));
                                                       }else{
-                                                        Get.snackbar('Walk in', '${visitation?.firstName} ${visitation?.lastName} walked in');
+                                                        Get.snackbar(appLocalizations.walkIn, '${visitation?.firstName} ${visitation?.lastName} ${appLocalizations.walkedIn}');
                                                       }
                                                     },))),);
-                                            });
+                                            }));
                                       })
                                 ],
                               ),

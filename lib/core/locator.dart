@@ -23,6 +23,4 @@ abstract class RegisterModules{
   AppLocalizations get appLocalizations;
 
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
-
-  FirebaseFirestore get firebaseFireStore => FirebaseFirestore.instance;
 }

@@ -174,6 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "visitorIsDrivingA":
             MessageLookupByLibrary.simpleMessage("Visitor is driving a"),
         "walkIn": MessageLookupByLibrary.simpleMessage("Walk in"),
+        "walkedIn": MessageLookupByLibrary.simpleMessage("Walked in"),
         "wasDrivingA": MessageLookupByLibrary.simpleMessage("Was driving a"),
         "wcontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),

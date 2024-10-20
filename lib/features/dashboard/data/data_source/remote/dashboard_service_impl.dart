@@ -9,8 +9,8 @@ import 'package:secure_access_administrator/features/dashboard/data/models/dashb
 @Injectable(as: DashboardService)
 class DashboardServiceImpl extends DashboardService{
 
-  DashboardServiceImpl({required this.firebaseFirestore}){
-    _visitationsRef = firebaseFirestore.collection(visitation_reference)
+  DashboardServiceImpl(){
+    _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
         .withConverter<DashboardGetVisitationsModel>(
         fromFirestore: (snapShot,_)=> DashboardGetVisitationsModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());
@@ -19,7 +19,6 @@ class DashboardServiceImpl extends DashboardService{
   }
 
 
-  final FirebaseFirestore firebaseFirestore;
   late  CollectionReference<DashboardGetVisitationsModel> _visitationsRef;
 
   @override
@@ -37,7 +36,7 @@ class DashboardServiceImpl extends DashboardService{
         toFirestore:(dashboardPageLoadVisitationsVehicleModel, _ )=> dashboardPageLoadVisitationsVehicleModel.toJson());
 
     QuerySnapshot<DashboardPageLoadVisitationsVehicleModel> queryVehicle = await _vehicleRef.
-    where('id',isEqualTo: visitationId).
+    where('identificationNumber',isEqualTo: visitationId).
     where('date', isEqualTo: date).snapshots().first;
     List<QueryDocumentSnapshot<DashboardPageLoadVisitationsVehicleModel>> queryDocumentVehicle = queryVehicle.docs;
 

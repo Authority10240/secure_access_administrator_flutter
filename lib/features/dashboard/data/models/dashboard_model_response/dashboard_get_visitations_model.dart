@@ -17,7 +17,8 @@ class DashboardGetVisitationsModel with _$DashboardGetVisitationsModel {
     required String? email,
     required String? date,
     required String? unit,
-    required String? time
+    required String? time,
+    required String? id
   }) = _DashboardGetVisitationsModel;
 
   factory DashboardGetVisitationsModel.fromJson(
