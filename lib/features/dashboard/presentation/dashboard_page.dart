@@ -151,7 +151,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                         ),
                         20.height,
                         Card(child: SizedBox(
-                          height: 550,
+                          height: 700,
                           child:Row(children: [
                             Card(elevation: 11, child:SizedBox(width: MediaQuery.sizeOf(context).width/2,child:
                             Padding(padding: EdgeInsets.all(20) ,
