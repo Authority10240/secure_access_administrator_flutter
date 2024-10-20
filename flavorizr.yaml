@@ -1,0 +1,33 @@
+flavors:
+  dev:
+    app:
+      name: "Secure Access Administrator dev"
+    android:
+      applicationId: "progressive.app.secure_access_administrator.dev"
+    ios:
+      bundleId: "progressive.app.secureaccessadministrator.dev"
+    macos:
+      bundleId: "progressive.app.secure_access_administrator.dev"
+
+
+  uat:
+    app:
+      name: "Secure Access Administrator uat"
+
+    android:
+      applicationId: "progressive.app.secure_access_administrator.uat"
+    ios:
+      bundleId: "progressive.app.secureaccessadministrator.uat"
+    macos:
+      bundleId: "progressive.app.secure_access_administrator.uat"
+
+  prod:
+    app:
+      name: "Secure Access Administrator"
+
+    android:
+      applicationId: "progressive.app.secure_access_administrator.prod"
+    ios:
+      bundleId: "progressive.app.secureaccessadministrator.prod"
+    macos:
+      bundleId: "progressive.app.secure_access_administrator.prod"

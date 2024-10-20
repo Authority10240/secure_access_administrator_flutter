@@ -1,0 +1,163 @@
+{
+  "project_info": {
+    "project_number": "850404688205",
+    "firebase_url": "https://safe-access-499b9-default-rtdb.firebaseio.com",
+    "project_id": "safe-access-499b9",
+    "storage_bucket": "safe-access-499b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:776c30299892295647f704",
+        "android_client_info": {
+          "package_name": "com.example.safe_access"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:f24a61ce04ad8e3047f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:61b454326165c29947f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:5e593ef50424670d47f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access.prod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:982192b26d39445f47f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access.uat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:149b0e74ac36b77c47f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access_administrator.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:1b8036e8b417c31d47f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access_administrator.prod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850404688205:android:4910cf70b292036a47f704",
+        "android_client_info": {
+          "package_name": "progressive.app.secure_access_administrator.uat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGU9Oah2pd9oXYLdMgpe-bZJoUxaComk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
