@@ -19,7 +19,7 @@ class DashboardPageLoadVisitationVehicleRepositoryImpl extends DashboardPageLoad
     required Function(BaseFailure? error)? onError})async {
    await safeBackEndCalls(
        apiRequest: dashboardService.dashboardPageLoadVisitationVehicle
-         (visitationId: params!.visitationId),
+         (visitationId: params!.visitationId, date: params!.date),
        onSuccess: (model)=> onSuccess!.call(model),
        onError: (error)=> onError!.call(error));
   }

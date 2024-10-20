@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'dashboard_page_load_vistations_model.dart';
+part of 'dashboard_get_visitations_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DashboardPageLoadVisitationsModel _$DashboardPageLoadVisitationsModelFromJson(
+DashboardGetVisitationsModel _$DashboardGetVisitationsModelFromJson(
     Map<String, dynamic> json) {
-  return _DashboardPageLoadVisitationsModel.fromJson(json);
+  return _DashboardGetVisitationsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DashboardPageLoadVisitationsModel {
+mixin _$DashboardGetVisitationsModel {
   String? get identificationNumber => throw _privateConstructorUsedError;
   String? get identificationType => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
@@ -29,28 +29,27 @@ mixin _$DashboardPageLoadVisitationsModel {
   String? get transportationType => throw _privateConstructorUsedError;
   String? get mobileNumber => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  DateTime? get dateTime => throw _privateConstructorUsedError;
-  String? get unitVisited => throw _privateConstructorUsedError;
-  DashboardPageLoadVisitationsVehicleModel? get vehicle =>
-      throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  String? get unit => throw _privateConstructorUsedError;
+  String? get time => throw _privateConstructorUsedError;
 
-  /// Serializes this DashboardPageLoadVisitationsModel to a JSON map.
+  /// Serializes this DashboardGetVisitationsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DashboardPageLoadVisitationsModel
+  /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DashboardPageLoadVisitationsModelCopyWith<DashboardPageLoadVisitationsModel>
+  $DashboardGetVisitationsModelCopyWith<DashboardGetVisitationsModel>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DashboardPageLoadVisitationsModelCopyWith<$Res> {
-  factory $DashboardPageLoadVisitationsModelCopyWith(
-          DashboardPageLoadVisitationsModel value,
-          $Res Function(DashboardPageLoadVisitationsModel) then) =
-      _$DashboardPageLoadVisitationsModelCopyWithImpl<$Res,
-          DashboardPageLoadVisitationsModel>;
+abstract class $DashboardGetVisitationsModelCopyWith<$Res> {
+  factory $DashboardGetVisitationsModelCopyWith(
+          DashboardGetVisitationsModel value,
+          $Res Function(DashboardGetVisitationsModel) then) =
+      _$DashboardGetVisitationsModelCopyWithImpl<$Res,
+          DashboardGetVisitationsModel>;
   @useResult
   $Res call(
       {String? identificationNumber,
@@ -61,25 +60,23 @@ abstract class $DashboardPageLoadVisitationsModelCopyWith<$Res> {
       String? transportationType,
       String? mobileNumber,
       String? email,
-      DateTime? dateTime,
-      String? unitVisited,
-      DashboardPageLoadVisitationsVehicleModel? vehicle});
-
-  $DashboardPageLoadVisitationsVehicleModelCopyWith<$Res>? get vehicle;
+      String? date,
+      String? unit,
+      String? time});
 }
 
 /// @nodoc
-class _$DashboardPageLoadVisitationsModelCopyWithImpl<$Res,
-        $Val extends DashboardPageLoadVisitationsModel>
-    implements $DashboardPageLoadVisitationsModelCopyWith<$Res> {
-  _$DashboardPageLoadVisitationsModelCopyWithImpl(this._value, this._then);
+class _$DashboardGetVisitationsModelCopyWithImpl<$Res,
+        $Val extends DashboardGetVisitationsModel>
+    implements $DashboardGetVisitationsModelCopyWith<$Res> {
+  _$DashboardGetVisitationsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DashboardPageLoadVisitationsModel
+  /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -92,9 +89,9 @@ class _$DashboardPageLoadVisitationsModelCopyWithImpl<$Res,
     Object? transportationType = freezed,
     Object? mobileNumber = freezed,
     Object? email = freezed,
-    Object? dateTime = freezed,
-    Object? unitVisited = freezed,
-    Object? vehicle = freezed,
+    Object? date = freezed,
+    Object? unit = freezed,
+    Object? time = freezed,
   }) {
     return _then(_value.copyWith(
       identificationNumber: freezed == identificationNumber
@@ -129,44 +126,29 @@ class _$DashboardPageLoadVisitationsModelCopyWithImpl<$Res,
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateTime: freezed == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      unitVisited: freezed == unitVisited
-          ? _value.unitVisited
-          : unitVisited // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      vehicle: freezed == vehicle
-          ? _value.vehicle
-          : vehicle // ignore: cast_nullable_to_non_nullable
-              as DashboardPageLoadVisitationsVehicleModel?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of DashboardPageLoadVisitationsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DashboardPageLoadVisitationsVehicleModelCopyWith<$Res>? get vehicle {
-    if (_value.vehicle == null) {
-      return null;
-    }
-
-    return $DashboardPageLoadVisitationsVehicleModelCopyWith<$Res>(
-        _value.vehicle!, (value) {
-      return _then(_value.copyWith(vehicle: value) as $Val);
-    });
   }
 }
 
 /// @nodoc
-abstract class _$$DashboardPageLoadVisitationsModelImplCopyWith<$Res>
-    implements $DashboardPageLoadVisitationsModelCopyWith<$Res> {
-  factory _$$DashboardPageLoadVisitationsModelImplCopyWith(
-          _$DashboardPageLoadVisitationsModelImpl value,
-          $Res Function(_$DashboardPageLoadVisitationsModelImpl) then) =
-      __$$DashboardPageLoadVisitationsModelImplCopyWithImpl<$Res>;
+abstract class _$$DashboardGetVisitationsModelImplCopyWith<$Res>
+    implements $DashboardGetVisitationsModelCopyWith<$Res> {
+  factory _$$DashboardGetVisitationsModelImplCopyWith(
+          _$DashboardGetVisitationsModelImpl value,
+          $Res Function(_$DashboardGetVisitationsModelImpl) then) =
+      __$$DashboardGetVisitationsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -178,25 +160,22 @@ abstract class _$$DashboardPageLoadVisitationsModelImplCopyWith<$Res>
       String? transportationType,
       String? mobileNumber,
       String? email,
-      DateTime? dateTime,
-      String? unitVisited,
-      DashboardPageLoadVisitationsVehicleModel? vehicle});
-
-  @override
-  $DashboardPageLoadVisitationsVehicleModelCopyWith<$Res>? get vehicle;
+      String? date,
+      String? unit,
+      String? time});
 }
 
 /// @nodoc
-class __$$DashboardPageLoadVisitationsModelImplCopyWithImpl<$Res>
-    extends _$DashboardPageLoadVisitationsModelCopyWithImpl<$Res,
-        _$DashboardPageLoadVisitationsModelImpl>
-    implements _$$DashboardPageLoadVisitationsModelImplCopyWith<$Res> {
-  __$$DashboardPageLoadVisitationsModelImplCopyWithImpl(
-      _$DashboardPageLoadVisitationsModelImpl _value,
-      $Res Function(_$DashboardPageLoadVisitationsModelImpl) _then)
+class __$$DashboardGetVisitationsModelImplCopyWithImpl<$Res>
+    extends _$DashboardGetVisitationsModelCopyWithImpl<$Res,
+        _$DashboardGetVisitationsModelImpl>
+    implements _$$DashboardGetVisitationsModelImplCopyWith<$Res> {
+  __$$DashboardGetVisitationsModelImplCopyWithImpl(
+      _$DashboardGetVisitationsModelImpl _value,
+      $Res Function(_$DashboardGetVisitationsModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DashboardPageLoadVisitationsModel
+  /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -209,11 +188,11 @@ class __$$DashboardPageLoadVisitationsModelImplCopyWithImpl<$Res>
     Object? transportationType = freezed,
     Object? mobileNumber = freezed,
     Object? email = freezed,
-    Object? dateTime = freezed,
-    Object? unitVisited = freezed,
-    Object? vehicle = freezed,
+    Object? date = freezed,
+    Object? unit = freezed,
+    Object? time = freezed,
   }) {
-    return _then(_$DashboardPageLoadVisitationsModelImpl(
+    return _then(_$DashboardGetVisitationsModelImpl(
       identificationNumber: freezed == identificationNumber
           ? _value.identificationNumber
           : identificationNumber // ignore: cast_nullable_to_non_nullable
@@ -246,28 +225,28 @@ class __$$DashboardPageLoadVisitationsModelImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateTime: freezed == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      unitVisited: freezed == unitVisited
-          ? _value.unitVisited
-          : unitVisited // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as String?,
-      vehicle: freezed == vehicle
-          ? _value.vehicle
-          : vehicle // ignore: cast_nullable_to_non_nullable
-              as DashboardPageLoadVisitationsVehicleModel?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DashboardPageLoadVisitationsModelImpl
+class _$DashboardGetVisitationsModelImpl
     with DiagnosticableTreeMixin
-    implements _DashboardPageLoadVisitationsModel {
-  const _$DashboardPageLoadVisitationsModelImpl(
+    implements _DashboardGetVisitationsModel {
+  const _$DashboardGetVisitationsModelImpl(
       {required this.identificationNumber,
       required this.identificationType,
       required this.firstName,
@@ -276,13 +255,13 @@ class _$DashboardPageLoadVisitationsModelImpl
       required this.transportationType,
       required this.mobileNumber,
       required this.email,
-      required this.dateTime,
-      required this.unitVisited,
-      required this.vehicle});
+      required this.date,
+      required this.unit,
+      required this.time});
 
-  factory _$DashboardPageLoadVisitationsModelImpl.fromJson(
+  factory _$DashboardGetVisitationsModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$DashboardPageLoadVisitationsModelImplFromJson(json);
+      _$$DashboardGetVisitationsModelImplFromJson(json);
 
   @override
   final String? identificationNumber;
@@ -301,22 +280,22 @@ class _$DashboardPageLoadVisitationsModelImpl
   @override
   final String? email;
   @override
-  final DateTime? dateTime;
+  final String? date;
   @override
-  final String? unitVisited;
+  final String? unit;
   @override
-  final DashboardPageLoadVisitationsVehicleModel? vehicle;
+  final String? time;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DashboardPageLoadVisitationsModel(identificationNumber: $identificationNumber, identificationType: $identificationType, firstName: $firstName, middleName: $middleName, lastName: $lastName, transportationType: $transportationType, mobileNumber: $mobileNumber, email: $email, dateTime: $dateTime, unitVisited: $unitVisited, vehicle: $vehicle)';
+    return 'DashboardGetVisitationsModel(identificationNumber: $identificationNumber, identificationType: $identificationType, firstName: $firstName, middleName: $middleName, lastName: $lastName, transportationType: $transportationType, mobileNumber: $mobileNumber, email: $email, date: $date, unit: $unit, time: $time)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DashboardPageLoadVisitationsModel'))
+      ..add(DiagnosticsProperty('type', 'DashboardGetVisitationsModel'))
       ..add(DiagnosticsProperty('identificationNumber', identificationNumber))
       ..add(DiagnosticsProperty('identificationType', identificationType))
       ..add(DiagnosticsProperty('firstName', firstName))
@@ -325,16 +304,16 @@ class _$DashboardPageLoadVisitationsModelImpl
       ..add(DiagnosticsProperty('transportationType', transportationType))
       ..add(DiagnosticsProperty('mobileNumber', mobileNumber))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('dateTime', dateTime))
-      ..add(DiagnosticsProperty('unitVisited', unitVisited))
-      ..add(DiagnosticsProperty('vehicle', vehicle));
+      ..add(DiagnosticsProperty('date', date))
+      ..add(DiagnosticsProperty('unit', unit))
+      ..add(DiagnosticsProperty('time', time));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DashboardPageLoadVisitationsModelImpl &&
+            other is _$DashboardGetVisitationsModelImpl &&
             (identical(other.identificationNumber, identificationNumber) ||
                 other.identificationNumber == identificationNumber) &&
             (identical(other.identificationType, identificationType) ||
@@ -350,11 +329,9 @@ class _$DashboardPageLoadVisitationsModelImpl
             (identical(other.mobileNumber, mobileNumber) ||
                 other.mobileNumber == mobileNumber) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime) &&
-            (identical(other.unitVisited, unitVisited) ||
-                other.unitVisited == unitVisited) &&
-            (identical(other.vehicle, vehicle) || other.vehicle == vehicle));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.time, time) || other.time == time));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -369,47 +346,45 @@ class _$DashboardPageLoadVisitationsModelImpl
       transportationType,
       mobileNumber,
       email,
-      dateTime,
-      unitVisited,
-      vehicle);
+      date,
+      unit,
+      time);
 
-  /// Create a copy of DashboardPageLoadVisitationsModel
+  /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DashboardPageLoadVisitationsModelImplCopyWith<
-          _$DashboardPageLoadVisitationsModelImpl>
-      get copyWith => __$$DashboardPageLoadVisitationsModelImplCopyWithImpl<
-          _$DashboardPageLoadVisitationsModelImpl>(this, _$identity);
+  _$$DashboardGetVisitationsModelImplCopyWith<
+          _$DashboardGetVisitationsModelImpl>
+      get copyWith => __$$DashboardGetVisitationsModelImplCopyWithImpl<
+          _$DashboardGetVisitationsModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DashboardPageLoadVisitationsModelImplToJson(
+    return _$$DashboardGetVisitationsModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _DashboardPageLoadVisitationsModel
-    implements DashboardPageLoadVisitationsModel {
-  const factory _DashboardPageLoadVisitationsModel(
-          {required final String? identificationNumber,
-          required final String? identificationType,
-          required final String? firstName,
-          required final String? middleName,
-          required final String? lastName,
-          required final String? transportationType,
-          required final String? mobileNumber,
-          required final String? email,
-          required final DateTime? dateTime,
-          required final String? unitVisited,
-          required final DashboardPageLoadVisitationsVehicleModel? vehicle}) =
-      _$DashboardPageLoadVisitationsModelImpl;
+abstract class _DashboardGetVisitationsModel
+    implements DashboardGetVisitationsModel {
+  const factory _DashboardGetVisitationsModel(
+      {required final String? identificationNumber,
+      required final String? identificationType,
+      required final String? firstName,
+      required final String? middleName,
+      required final String? lastName,
+      required final String? transportationType,
+      required final String? mobileNumber,
+      required final String? email,
+      required final String? date,
+      required final String? unit,
+      required final String? time}) = _$DashboardGetVisitationsModelImpl;
 
-  factory _DashboardPageLoadVisitationsModel.fromJson(
-          Map<String, dynamic> json) =
-      _$DashboardPageLoadVisitationsModelImpl.fromJson;
+  factory _DashboardGetVisitationsModel.fromJson(Map<String, dynamic> json) =
+      _$DashboardGetVisitationsModelImpl.fromJson;
 
   @override
   String? get identificationNumber;
@@ -428,17 +403,17 @@ abstract class _DashboardPageLoadVisitationsModel
   @override
   String? get email;
   @override
-  DateTime? get dateTime;
+  String? get date;
   @override
-  String? get unitVisited;
+  String? get unit;
   @override
-  DashboardPageLoadVisitationsVehicleModel? get vehicle;
+  String? get time;
 
-  /// Create a copy of DashboardPageLoadVisitationsModel
+  /// Create a copy of DashboardGetVisitationsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DashboardPageLoadVisitationsModelImplCopyWith<
-          _$DashboardPageLoadVisitationsModelImpl>
+  _$$DashboardGetVisitationsModelImplCopyWith<
+          _$DashboardGetVisitationsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

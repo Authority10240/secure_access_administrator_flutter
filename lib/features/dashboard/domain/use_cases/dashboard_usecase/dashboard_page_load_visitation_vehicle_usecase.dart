@@ -20,12 +20,13 @@ class DashboardPageLoadVisitationVehicleUseCase extends BaseUseCase<DashboardPag
     await dashboardPageLoadVisitationVehicleRepository.call(
         onSuccess: (model)=> onSuccess!.call(model),
         onError:(error)=> onError!.call(error),
-    params: DashboardPageLoadVisitationVehicleRepositoryParams(visitationId: params!.visitationId));
+    params: DashboardPageLoadVisitationVehicleRepositoryParams(visitationId: params!.visitationId, date: params!.date));
   }
 }
 
 class DashboardPageLoadVisitationVehicleUseCaseParams extends BaseUseCaseParams{
-  DashboardPageLoadVisitationVehicleUseCaseParams({required this.visitationId});
+  DashboardPageLoadVisitationVehicleUseCaseParams({required this.visitationId, required this.date});
 
   final String visitationId;
+  final String date;
 }

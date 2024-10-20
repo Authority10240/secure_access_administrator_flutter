@@ -1,21 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:heroicons/heroicons.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/base_classes/base_state.dart';
 import 'package:secure_access_administrator/core/colors.dart';
 import 'package:secure_access_administrator/core/extensions/date_extension.dart';
+import 'package:secure_access_administrator/core/extensions/num_extension.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_vistations_model.dart';
+import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
+import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/car_description_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/presentation/widgets/transport_type_card.dart';
+import 'package:secure_access_administrator/features/dashboard/presentation/widgets/dashboard_vistation_summary_widget.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 import 'package:get/get.dart';
 import 'bloc/dashboard_bloc.dart';
+
+const double height34 = 34;
+const double radius8 = 8;
+const double size11 = 11;
+const String dateFormat = 'MMMM yyy';
+const String local = 'en_us';
+const double width1 = 1;
+const double fontSize10 = 10;
+const String fontFamilyLato = "Lato";
+const double calendarHeight = 280;
+const int firstDayOfTheWeek = 0;
+const int minSelectedDate = 360;
+const int maxSelectedDate = 360;
 
 
 class DashboardPage extends BasePage {
@@ -31,7 +49,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getBloc().add(DashBoardPageVisitationEvent());
+    getBloc().add(DashBoardGetVisitationEvent());
 
   }
 
@@ -42,9 +60,30 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
 
   @override
   Widget buildView(BuildContext context) {
-    return BlocConsumer<DashboardBloc, DashboardPageState>(
+    return BlocConsumerWithSideEffects<DashboardBloc, DashboardPageState,DashboardPageSideEffect>(
+      sideEffectsListener: (context, effect){
+        if(effect is DashBoardPageLoadVisitationVehicleSideEffect){
+          if(effect.effectState == EffectState.loading){
+            preloaderWidgetOverlay(context);
+          }
+          if(effect.effectState == EffectState.error){
+            Navigator.pop(context);
+            Get.snackbar(appLocalizations.error, effect.errorMessage!);
+          }
+          if(effect.effectState == EffectState.success){
+            Navigator.pop(context);
+            carDescriptionDialog(
+                appLocalizations: appLocalizations,
+                vehicle: effect.dashboardPageLoadVisitationsVehicleModel!,
+                visitation: effect.dashboardGetVisitationsModel!
+
+            );
+          }
+        }
+      },
+      bloc: getBloc(),
       listener: (context, state){
-        if(state is DashBoardPageLoadVisitationVehicleState
+        if(state is DashboardPageGetVisitationState
             ){
 
           if(state.dataState == DataState.loading) {
@@ -54,22 +93,10 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                 Navigator.pop(context);
                 Get.snackbar(appLocalizations.error, state.errorMessage!);
               }
-
-              if(state.dataState == DataState.success) {
-                Navigator.pop(context);
-                carDescriptionDialog(
-                    appLocalizations: appLocalizations,
-                    vehicle: state.dashboardPageLoadVisitationsVehicleModel!,
-                    visitation: state.dashboardPageLoadVisitationsModel!
-
-                );
-              }
         }
       },
       builder: (context, state) {
-        switch(state){
-          case DashBoardPageLogsState () || DashBoardPageLoadVisitationVehicleState():
-            return state.dataState == DataState.success?
+       return
             SingleChildScrollView(
               child: Padding(
                 padding:  EdgeInsets.all(borderRadius),
@@ -78,136 +105,153 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        smallSpacer,
-                        Center(child: Text(appLocalizations.welcomeTo, style: textStyleSubHeading(),)),
-                        smallSpacer,
-                        Center(child: Text(appLocalizations.complexName, style: textStyleTitle(),)),
-                        smallSpacer,
-                        Center(child: Text(appLocalizations.whoHasBeenHereToday, style: textStyleDirectives(),)),
-                        mediumSpacer,
-                        StreamBuilder<QuerySnapshot<DashboardPageLoadVisitationsModel?>>(
-                            stream: state.visitations,
-                            builder: (context, snapshot){
-                              List<QueryDocumentSnapshot<DashboardPageLoadVisitationsModel?>>? data = snapshot.data?.docs??[];
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: snapshot.data?.docs.length??0,
-                                  itemBuilder: (context, index){
-                                  DashboardPageLoadVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
-                                  String? visitationId  = snapshot.data?.docs.elementAt(index).id;
-                                  return Card(elevation: 11,child: Container( child: ListTile(
-                                    leading: Text("Unit: ${visitation?.unitVisited??""}",style: textStyleSubHeading(),),
-                                    title: Text("${appLocalizations.name}: ${visitation?.firstName??""}\n"
-                                        "${appLocalizations.surname}: ${visitation?.lastName??""}",style: textStyleSubHeading(),),
-                                    subtitle: Text("Date: ${visitation?.dateTime!.toString().toFormattedDate()} Time:${visitation?.dateTime!.toString().toFormattedTime()}",),
-                                    trailing: InkWell(
-                                    child: Icon(
-                                        visitation?.transportationType == TransportationType.driveIn.toString()?
-                                        Icons.car_crash_sharp :
-                                        Icons.directions_walk_outlined,
-                                    color: Colors.blue,),
-                                  onTap: (){
-                                      if(visitation?.transportationType == TransportationType.driveIn.toString()) {
-                                        getBloc().add(DashBoardPageLoadVisitationVehicleEvent(
-                                            dashboardPageLoadVisitationsModel: visitation!,
-                                            visitationId: visitationId!));
-                                      }else{
-                                        Get.snackbar('Walk in', '${visitation?.firstName} ${visitation?.lastName} walked in');
-                                      }
-                                  },))),);
-                              });
-                        })
+                        SizedBox(
+                          height: 200, child:
+                        ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            DashboardVisitationSummaryWidget(
+                              buttonCaption: appLocalizations.more,
+                              heading: appLocalizations.visitations,
+                              stream: state.todaysVisitations,
+                              date: appLocalizations.today,),
+                            DashboardVisitationSummaryWidget(
+                              buttonCaption: appLocalizations.more,
+                              heading: appLocalizations.visitations,
+                              stream: state.yesterdaysVisitations,
+                              date: appLocalizations.yesterday,),
+                            DashboardVisitationSummaryWidget(
+                                buttonCaption: appLocalizations.more,
+                                heading: appLocalizations.visitations,
+                                stream: state.twoDaysBackVisitations,
+                                date: DateTime.now().subtract(const Duration(days: 2)).toString().toFormattedDate()),
+                            DashboardVisitationSummaryWidget(
+                                buttonCaption: appLocalizations.more,
+                                heading: appLocalizations.visitations,
+                                stream: state.threeDaysBackVisitations,
+                                date: DateTime.now().subtract(const Duration(days: 3)).toString().toFormattedDate()),
+                            DashboardVisitationSummaryWidget(
+                                buttonCaption: appLocalizations.more,
+                                heading: appLocalizations.visitations,
+                                stream: state.fourDaysBackVisitations,
+                                date: DateTime.now().subtract(const Duration(days: 4)).toString().toFormattedDate()),
+                            DashboardVisitationSummaryWidget(
+                                buttonCaption: appLocalizations.more,
+                                heading: appLocalizations.visitations,
+                                stream: state.fiveDaysBackVisitations,
+                                date: DateTime.now().subtract(const Duration(days: 5)).toString().toFormattedDate()),
+                            DashboardVisitationSummaryWidget(
+                                buttonCaption: appLocalizations.more,
+                                heading: appLocalizations.visitations,
+                                stream: state.sixDaysBackVisitations,
+                                date: DateTime.now().subtract(const Duration(days: 6)).toString().toFormattedDate()),
+
+                          ],),
+
+                        ),
+                        20.height,
+                        Card(child: SizedBox(
+                          height: 550,
+                          child:Row(children: [
+                            Card(elevation: 11, child:SizedBox(width: MediaQuery.sizeOf(context).width/2,child:
+                            Padding(padding: EdgeInsets.all(20) ,
+                                child:Column(children: [
+                                  Text(getBloc().currentMonth,style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
+                              20.height,
+                              Expanded(child:
+                              CalendarCarousel<Event>(
+                            weekdayTextStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: fontSize10 ,
+                                fontFamily: fontFamilyLato,
+                                fontWeight: FontWeight.w700),
+                            onDayPressed: (date, events) {
+                              getBloc().add(DashBoardCalendarDateSelectedEvent(dateTime: date, events: events));
+                            },
+                            isScrollable: false,
+                            selectedDayButtonColor: AppColorScheme.primary,
+                            selectedDayBorderColor: AppColorScheme.primary,
+                            daysTextStyle: const TextStyle(color: Colors.black),
+                            showOnlyCurrentMonthDate: true,
+                            showWeekDays: true,
+                            firstDayOfWeek: 0,
+                            selectedDateTime: getBloc().currentDate2,
+                            targetDateTime: getBloc().targetDateTime,
+                            customGridViewPhysics: const NeverScrollableScrollPhysics(),
+                            todayBorderColor: AppColorScheme.primary,
+                            todayButtonColor: AppColorScheme.primary,
+                            todayTextStyle: const TextStyle(color: Colors.white),
+                            showHeader: false,
+                            selectedDayTextStyle: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            minSelectedDate: getBloc().currentDate.subtract(const Duration(days: minSelectedDate)),
+                            maxSelectedDate: getBloc().currentDate.add(const Duration(days: maxSelectedDate)),
+                            onCalendarChanged: (DateTime date) {
+                              getBloc().add(DashBoardCalendarChangedEvent(dateTime: date));
+                            },
+                            weekendTextStyle: const TextStyle(color: Colors.black),
+
+                          )
+                              )
+                                ])
+                            ),
+                            )
+                            ),
+                            Expanded(child: Card(
+                              elevation: 11,
+                              child: Padding(padding: EdgeInsets.all(20), child: Column(
+                                children: [
+                                  Text(appLocalizations.visitations,style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
+                                  20.height,
+                                  mediumSpacer,
+                                  StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
+                                      stream: state.calenderDayVisitations,
+                                      builder: (context, snapshot){
+                                        List<QueryDocumentSnapshot<DashboardGetVisitationsModel?>>? data = snapshot.data?.docs??[];
+                                        return ListView.builder(
+                                            shrinkWrap: true,
+                                            physics: const NeverScrollableScrollPhysics(),
+                                            itemCount: snapshot.data?.docs.length??0,
+                                            itemBuilder: (context, index){
+                                              DashboardGetVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
+                                              String? visitationId  = snapshot.data?.docs.elementAt(index).id;
+                                              return Card(elevation: 11,child: Container( child: ListTile(
+                                                  leading: Text("Unit: ${visitation?.unit??""}",style: textStyleSubHeading(),),
+                                                  title: Text("${appLocalizations.name}: ${visitation?.firstName??""}\n"
+                                                      "${appLocalizations.surname}: ${visitation?.lastName??""}",style: textStyleSubHeading(),),
+                                                  subtitle: Text("Date: ${visitation?.date!} Time:${visitation?.time}",),
+                                                  trailing: InkWell(
+                                                    child: Icon(
+                                                      visitation?.transportationType == TransportationType.driveIn.toString()?
+                                                      Icons.car_crash_sharp :
+                                                      Icons.directions_walk_outlined,
+                                                      color: Colors.blue,),
+                                                    onTap: (){
+                                                      if(visitation?.transportationType == TransportationType.driveIn.toString()) {
+                                                        getBloc().add(DashBoardPageLoadVisitationVehicleEvent(
+                                                            visitationId: visitation!.identificationNumber!,
+                                                            dashboardGetVisitationsModel: visitation!));
+                                                      }else{
+                                                        Get.snackbar('Walk in', '${visitation?.firstName} ${visitation?.lastName} walked in');
+                                                      }
+                                                    },))),);
+                                            });
+                                      })
+                                ],
+                              ),
+                            )))
+                          ]
+                          )
+                        ,)
+                          ,)
+
+
                       ]
                   ),
                 ),
-              ),
-            ):
-            state.dataState == DataState.loading?
-            preloaderWidget():
-            Text("Error",style: textStyleSubHeading(),)
-            ;
-          case DashboardPageInitState():
-        case DashBoardPageVisitationState():
-            return SingleChildScrollView(
-          child: Padding(
-            padding:  EdgeInsets.all(borderRadius),
-            child:  Padding(
-              padding:  EdgeInsets.all(pagePadding),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    smallSpacer,
-                    Center(child: Text(appLocalizations.welcomeTo, style: textStyleSubHeading(),)),
-                    smallSpacer,
-                    Center(child: Text(appLocalizations.complexName, style: textStyleTitle(),)),
-                    smallSpacer,
-                    Center(child: Text(appLocalizations.whoIsVisitingToday, style: textStyleDirectives(),)),
-                    mediumSpacer,
-
-
-                    TransportTypeCard(
-                      caption: getLocalization().drivein,
-                      iconWidget: Icon(Icons.car_crash_sharp, size: 50, color: AppColorScheme.primary),
-                      ontap: (){
-                      },
-                    ),
-
-                    TransportTypeCard(
-                      caption: getLocalization().walkIn,
-                      iconWidget:Icon(Icons.directions_walk_outlined, size: 50, color: AppColorScheme.primary),
-                      ontap: (){
-                      },
-                    ),
-
-
-
-                  ]
-              ),
-            ),
-          ),
-        );
-          default: return SingleChildScrollView(
-            child: Padding(
-              padding:  EdgeInsets.all(borderRadius),
-              child:  Padding(
-                padding:  EdgeInsets.all(pagePadding),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      smallSpacer,
-                      Center(child: Text(appLocalizations.welcomeTo, style: textStyleSubHeading(),)),
-                      smallSpacer,
-                      Center(child: Text(appLocalizations.complexName, style: textStyleTitle(),)),
-                      smallSpacer,
-                      Center(child: Text(appLocalizations.whoIsVisitingToday, style: textStyleDirectives(),)),
-                      mediumSpacer,
-
-
-                      TransportTypeCard(
-                        caption: getLocalization().drivein,
-                        iconWidget: Icon(Icons.car_crash_sharp, size: 50, color: AppColorScheme.primary),
-                        ontap: (){
-                        },
-                      ),
-
-                      TransportTypeCard(
-                        caption: getLocalization().walkIn,
-                        iconWidget:Icon(Icons.directions_walk_outlined, size: 50, color: AppColorScheme.primary),
-                        ontap: (){
-                        },
-                      ),
-
-
-
-                    ]
-                ),
-              ),
-            ),
-          );
-        }
-      },
-    );
+        ));
+        });
   }
 
 
@@ -221,16 +265,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
     return locator<AppLocalizations>();
   }
 
-  @override
-  Widget? floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: AppColorScheme.primary,
-        onPressed:()=> getBloc().add(DashBoardPageSwitchEvent(
-            pageState: baseBloc.state)),
-    child:const HeroIcon(
-       HeroIcons.arrowsRightLeft,
-      color: Colors.white,) ,);
-  }
+
 
 
 }

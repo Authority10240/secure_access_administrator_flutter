@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/custom_form_button.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:get/get.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_vistations_model.dart';
+import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
+import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 void carDescriptionDialog({
   required DashboardPageLoadVisitationsVehicleModel vehicle,
-  required DashboardPageLoadVisitationsModel visitation,
+  required DashboardGetVisitationsModel visitation,
   required AppLocalizations appLocalizations}){
 
   Get.dialog(
@@ -42,7 +42,7 @@ void carDescriptionDialog({
                       smallMediumSpacer,
                       Text(appLocalizations.description, style:  textStyleDirectives(),),
                       labelSpacer,
-                      Text(vehicle?.regNumber??'', style:  textStyleDescription(),),
+                      Text(vehicle?.description??'', style:  textStyleDescription(),),
 
                       smallMediumSpacer,
                       Text(appLocalizations.color, style:  textStyleDirectives(),),

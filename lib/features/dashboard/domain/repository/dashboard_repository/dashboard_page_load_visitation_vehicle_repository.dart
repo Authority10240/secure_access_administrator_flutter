@@ -5,7 +5,8 @@ abstract class DashboardPageLoadVisitationVehicleRepository  extends BaseReposit
 
 class DashboardPageLoadVisitationVehicleRepositoryParams extends BaseRepositoryParams{
 
-  DashboardPageLoadVisitationVehicleRepositoryParams({required this.visitationId});
+  DashboardPageLoadVisitationVehicleRepositoryParams({required this.visitationId, required this.date});
 
   final String visitationId;
+  final String date;
 }

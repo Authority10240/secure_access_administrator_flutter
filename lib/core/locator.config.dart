@@ -18,18 +18,18 @@ import '../features/dashboard/data/data_source/remote/dashboard_service.dart'
     as _i274;
 import '../features/dashboard/data/data_source/remote/dashboard_service_impl.dart'
     as _i83;
+import '../features/dashboard/data/repository_impl/dashboard_repository_impl/dashboard_get_visitations_repository_impl.dart'
+    as _i351;
 import '../features/dashboard/data/repository_impl/dashboard_repository_impl/dashboard_page_load_visitation_vehicle_repository_impl.dart'
     as _i673;
-import '../features/dashboard/data/repository_impl/dashboard_repository_impl/dashboard_page_load_visitations_repository_impl.dart'
-    as _i1037;
+import '../features/dashboard/domain/repository/dashboard_repository/dashboard_get_visitations_repository.dart'
+    as _i262;
 import '../features/dashboard/domain/repository/dashboard_repository/dashboard_page_load_visitation_vehicle_repository.dart'
     as _i261;
-import '../features/dashboard/domain/repository/dashboard_repository/dashboard_page_load_visitations_repository.dart'
-    as _i58;
+import '../features/dashboard/domain/use_cases/dashboard_usecase/dashboard_get_visitations_usecase.dart'
+    as _i591;
 import '../features/dashboard/domain/use_cases/dashboard_usecase/dashboard_page_load_visitation_vehicle_usecase.dart'
     as _i546;
-import '../features/dashboard/domain/use_cases/dashboard_usecase/dashboard_page_load_visitations_usecase.dart'
-    as _i442;
 import '../features/dashboard/presentation/bloc/dashboard_bloc.dart' as _i356;
 import '../features/login/data/data_source/local/hive/biometrics_local_storage/model/biometrics_local_model.dart'
     as _i822;
@@ -70,13 +70,17 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i822.BiometricsLocalModel(enabled: gh<bool>()));
     gh.factory<_i597.SignInLocalModel>(
         () => _i597.SignInLocalModel(signedIn: gh<bool>()));
-    gh.singleton<_i274.DashboardService>(() => _i83.DashboardServiceImpl(
+    gh.factory<_i274.DashboardService>(() => _i83.DashboardServiceImpl(
         firebaseFirestore: gh<_i974.FirebaseFirestore>()));
+    gh.factory<_i262.DashboardGetVisitationsRepository>(() =>
+        _i351.DashboardGetVisitationsRepositoryImpl(
+            dashboardService: gh<_i274.DashboardService>()));
     gh.factory<_i1054.SignInService>(
         () => _i926.SignInServiceImpl(firebaseAuth: gh<_i59.FirebaseAuth>()));
-    gh.factory<_i58.DashboardPageLoadVisitationsRepository>(() =>
-        _i1037.DashboardPageLoadVisitationsRepositoryImpl(
-            dashboardService: gh<_i274.DashboardService>()));
+    gh.factory<_i591.DashboardGetVisitationsUseCase>(() =>
+        _i591.DashboardGetVisitationsUseCase(
+            dashboardGetVisitationsRepository:
+                gh<_i262.DashboardGetVisitationsRepository>()));
     gh.factory<_i261.DashboardPageLoadVisitationVehicleRepository>(() =>
         _i673.DashboardPageLoadVisitationVehicleRepositoryImpl(
             dashboardService: gh<_i274.DashboardService>()));
@@ -85,22 +89,25 @@ extension GetItInjectableX on _i174.GetIt {
             signInService: gh<_i1054.SignInService>()));
     gh.factory<_i845.SignInClickedUseCase>(() => _i845.SignInClickedUseCase(
         signInClickedRepository: gh<_i171.SignInClickedRepository>()));
-    gh.factory<_i442.DashboardPageLoadVisitationsUseCase>(() =>
-        _i442.DashboardPageLoadVisitationsUseCase(
-            dashboardPageLoadVisitationsRepository:
-                gh<_i58.DashboardPageLoadVisitationsRepository>()));
     gh.factory<_i546.DashboardPageLoadVisitationVehicleUseCase>(() =>
         _i546.DashboardPageLoadVisitationVehicleUseCase(
             dashboardPageLoadVisitationVehicleRepository:
                 gh<_i261.DashboardPageLoadVisitationVehicleRepository>()));
-    gh.factory<_i1022.LoginBloc>(() => _i1022.LoginBloc(
-        signInClickedUseCase: gh<_i845.SignInClickedUseCase>()));
     gh.factory<_i356.DashboardBloc>(() => _i356.DashboardBloc(
+          get2DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          get3DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          get4DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          get5DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          get6DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          getTodaysVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          getYesterdaysVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
+          getCalenderDateVisitations:
+              gh<_i591.DashboardGetVisitationsUseCase>(),
           dashboardPageLoadVisitationVehicleUseCase:
               gh<_i546.DashboardPageLoadVisitationVehicleUseCase>(),
-          dashboardPageLoadVisitationsUseCase:
-              gh<_i442.DashboardPageLoadVisitationsUseCase>(),
         ));
+    gh.factory<_i1022.LoginBloc>(() => _i1022.LoginBloc(
+        signInClickedUseCase: gh<_i845.SignInClickedUseCase>()));
     return this;
   }
 }

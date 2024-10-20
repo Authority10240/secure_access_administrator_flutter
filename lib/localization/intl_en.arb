@@ -104,7 +104,11 @@
   "back": "Back",
   "drivein": "Drive in",
   "time": "Time:",
-  "date": "Date"
+  "date": "Date",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "visitations": "Visitation(s)",
+  "more": "More"
 
 
 

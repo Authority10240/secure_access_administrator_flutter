@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "middleName": MessageLookupByLibrary.simpleMessage("Middle Name"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "model": MessageLookupByLibrary.simpleMessage("Model"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "name": MessageLookupByLibrary.simpleMessage("Name *"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password "),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -160,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "testMe": MessageLookupByLibrary.simpleMessage("Test me"),
         "time": MessageLookupByLibrary.simpleMessage("Time:"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
         "truck": MessageLookupByLibrary.simpleMessage("Truck"),
         "unitVisited": MessageLookupByLibrary.simpleMessage("Unit visited"),
         "username": MessageLookupByLibrary.simpleMessage("Username "),
@@ -168,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "vin": MessageLookupByLibrary.simpleMessage("VIN"),
         "visitationLoggedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Visitation logged successfully"),
+        "visitations": MessageLookupByLibrary.simpleMessage("Visitation(s)"),
         "visitorIsDrivingA":
             MessageLookupByLibrary.simpleMessage("Visitor is driving a"),
         "walkIn": MessageLookupByLibrary.simpleMessage("Walk in"),
@@ -183,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "whoHasBeenHereToday":
             MessageLookupByLibrary.simpleMessage("Who has been here today?"),
         "whoIsVisitingToday":
-            MessageLookupByLibrary.simpleMessage("Who is visiting today?")
+            MessageLookupByLibrary.simpleMessage("Who is visiting today?"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday")
       };
 }

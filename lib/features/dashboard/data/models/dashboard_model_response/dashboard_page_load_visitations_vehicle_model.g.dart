@@ -19,7 +19,10 @@ _$DashboardPageLoadVisitationsVehicleModelImpl
           make: json['make'] as String?,
           model: json['model'] as String?,
           identificationNumber: json['identificationNumber'] as String?,
+          date: json['date'] as String?,
+          unit: json['unit'] as String?,
           color: json['color'] as String?,
+          time: json['time'] as String?,
         );
 
 Map<String, dynamic> _$$DashboardPageLoadVisitationsVehicleModelImplToJson(
@@ -34,5 +37,8 @@ Map<String, dynamic> _$$DashboardPageLoadVisitationsVehicleModelImplToJson(
       'make': instance.make,
       'model': instance.model,
       'identificationNumber': instance.identificationNumber,
+      'date': instance.date,
+      'unit': instance.unit,
       'color': instance.color,
+      'time': instance.time,
     };
