@@ -209,8 +209,8 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                               elevation: 11,
                               child: Padding(padding: EdgeInsets.all(20), child: Column(
                                 children: [
-                                  Text('${getBloc().currentDate2.toString().toFormattedDate()} ${appLocalizations.visitations}',style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
-
+                                  Text('${getBloc().currentDate2.toString().toFormattedDate()} ${appLocalizations.visitations}',
+                                    style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
                                   StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
                                       stream: state.calenderDayVisitations,
                                       builder: (context, snapshot){
