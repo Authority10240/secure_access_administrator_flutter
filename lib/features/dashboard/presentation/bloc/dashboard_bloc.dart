@@ -37,6 +37,10 @@ class DashboardBloc
         on<DashBoardGetVisitationEvent>((event, emit)=> _onDashboardGetVisitations(event,emit));
         on<DashBoardPageLoadVisitationVehicleEvent>((event, state)=>
             _onDashBoardPageLoadVisitationVehicleEvent(event, state));
+        on<DashBoardCalendarDateSelectedEvent>((event, emit)=>
+            _onDashboardCalenderSelectedEvent(event, emit));
+        on<DashBoardCalendarChangedEvent>((event, emit)=>
+        _onDashboardCalenderChangedEvent(event,emit));
     }
 
     final DashboardGetVisitationsUseCase getTodaysVisitations;
@@ -63,11 +67,85 @@ class DashboardBloc
     String currentMonth = DateFormat('yMMM','en_us').format(DateTime.now());
     DateTime targetDateTime = DateTime.now();
 
+    Future<void> _onDashboardCalenderChangedEvent(
+        DashBoardCalendarChangedEvent event,
+        Emitter<DashboardPageState> emit
+        )async{
+
+        emit(DashBoardCalendarChangedState( fiveDaysBackVisitations: fiveDaysBackVisitations,
+            fourDaysBackVisitations: fourDaysBackVisitations,
+            sixDaysBackVisitations: sixDaysBackVisitations,
+            threeDaysBackVisitations: threeDaysBackVisitations,
+            todaysVisitations: todaysVisitations,
+            twoDaysBackVisitations: twoDaysBackVisitations,
+            yesterdaysVisitations: yesterdaysVisitations,
+            calenderDayVisitations: calenderDayVisitations)..dataState = DataState.loading);
+            print('DashboardCalenderChangedEvent');
+            targetDateTime = event.dateTime;
+            currentMonth = DateFormat.yMMM().format(targetDateTime);
+
+            emit(DashBoardCalendarChangedState( fiveDaysBackVisitations: fiveDaysBackVisitations,
+                fourDaysBackVisitations: fourDaysBackVisitations,
+                sixDaysBackVisitations: sixDaysBackVisitations,
+                threeDaysBackVisitations: threeDaysBackVisitations,
+                todaysVisitations: todaysVisitations,
+                twoDaysBackVisitations: twoDaysBackVisitations,
+                yesterdaysVisitations: yesterdaysVisitations,
+                calenderDayVisitations: calenderDayVisitations)..dataState = DataState.success);
+
+    }
+
+    Future<void> _onDashboardCalenderSelectedEvent(
+        DashBoardCalendarDateSelectedEvent event,
+        Emitter<DashboardPageState> emit
+        )async{
+        print('DashboardCalenderSelectedEvent');
+        emit(DashBoardCalendarDateSelectedState(
+            fiveDaysBackVisitations: fiveDaysBackVisitations,
+            fourDaysBackVisitations: fourDaysBackVisitations,
+            sixDaysBackVisitations: sixDaysBackVisitations,
+            threeDaysBackVisitations: threeDaysBackVisitations,
+            todaysVisitations: todaysVisitations,
+            twoDaysBackVisitations: twoDaysBackVisitations,
+            yesterdaysVisitations: yesterdaysVisitations,
+            calenderDayVisitations: calenderDayVisitations
+        )..dataState = DataState.loading);
+
+        currentDate2 = event.dateTime;
+        if(currentDate2.month == DateTime.now().month){
+            targetDateTime = DateTime.now();
+        }else{
+            targetDateTime = currentDate2;
+        }
+
+        await getCalenderDateVisitations.call(
+            onSuccess: (model) {
+                calenderDayVisitations = model;
+                emit(DashBoardCalendarDateSelectedState(
+                fiveDaysBackVisitations: fiveDaysBackVisitations,
+                fourDaysBackVisitations: fourDaysBackVisitations,
+                sixDaysBackVisitations: sixDaysBackVisitations,
+                threeDaysBackVisitations: threeDaysBackVisitations,
+                todaysVisitations: todaysVisitations,
+                twoDaysBackVisitations: twoDaysBackVisitations,
+                yesterdaysVisitations: yesterdaysVisitations,
+                calenderDayVisitations: calenderDayVisitations
+            )
+                ..dataState = DataState.success);},
+            onError: (error) => throw RuntimeException(errorCode: error!.errorCode!, message: error.message!),
+            params: DashboardGetVisitationsUseCaseParams(
+                date: event.dateTime.toString().toFormattedDate()));
+
+
+
+    }
+
 
     Future<void> _onDashboardGetVisitations(
         DashBoardGetVisitationEvent event,
         Emitter<DashboardPageState> emit
         )async{
+        print('DashboardGetVisitationsEvent');
         try {
             // get calender dat visitations
             await getCalenderDateVisitations.call(

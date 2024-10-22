@@ -39,5 +39,39 @@ class DashboardPageGetVisitationState extends DashboardPageState{
   });
 }
 
+class DashBoardCalendarDateSelectedState extends DashboardPageState{
+
+  DashBoardCalendarDateSelectedState({
+    super.calenderDayVisitations,
+    super.fiveDaysBackVisitations,
+    super.fourDaysBackVisitations,
+    super.sixDaysBackVisitations,
+    super.threeDaysBackVisitations,
+    super.todaysVisitations,
+    super.twoDaysBackVisitations,
+    super.yesterdaysVisitations,
+    super.errorCode,
+    super.errorMessage
+});
+
+}
+
+class DashBoardCalendarChangedState extends DashboardPageState{
+
+  DashBoardCalendarChangedState({
+    super.calenderDayVisitations,
+    super.fiveDaysBackVisitations,
+    super.fourDaysBackVisitations,
+    super.sixDaysBackVisitations,
+    super.threeDaysBackVisitations,
+    super.todaysVisitations,
+    super.twoDaysBackVisitations,
+    super.yesterdaysVisitations,
+    super.errorCode,
+    super.errorMessage
+  });
+
+}
+
 
 

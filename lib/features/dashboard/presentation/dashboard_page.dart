@@ -83,8 +83,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
       },
       bloc: getBloc(),
       listener: (context, state){
-        if(state is DashboardPageGetVisitationState
-            ){
+        if(state is DashboardPageGetVisitationState){
 
           if(state.dataState == DataState.loading) {
             preloaderWidgetOverlay(context);
@@ -93,6 +92,14 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                 Navigator.pop(context);
                 Get.snackbar(appLocalizations.error, state.errorMessage!);
               }
+        }
+
+        if(state is DashBoardCalendarDateSelectedState){
+
+          if(state.dataState == DataState.error){
+            Navigator.pop(context);
+            Get.snackbar(appLocalizations.error, state.errorMessage!);
+          }
         }
       },
       builder: (context, state) {
@@ -168,7 +175,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                             onDayPressed: (date, events) {
                               getBloc().add(DashBoardCalendarDateSelectedEvent(dateTime: date, events: events));
                             },
-                            isScrollable: false,
+                            isScrollable: true,
                             selectedDayButtonColor: AppColorScheme.primary,
                             selectedDayBorderColor: AppColorScheme.primary,
                             daysTextStyle: const TextStyle(color: Colors.black),
