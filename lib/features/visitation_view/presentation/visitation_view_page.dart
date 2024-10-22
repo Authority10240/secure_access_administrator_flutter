@@ -15,7 +15,9 @@ import 'bloc/visitation_view_bloc.dart';
 
 
 class VisitationViewPage extends BasePage {
-  const VisitationViewPage({super.key});
+  const VisitationViewPage({super.key, required this.visitationViewLoadVisitationModel});
+
+  final VisitationViewLoadVisitationModel visitationViewLoadVisitationModel;
 
   @override
   _VisitationViewPageState createState() => _VisitationViewPageState();
@@ -23,10 +25,14 @@ class VisitationViewPage extends BasePage {
 
 class _VisitationViewPageState extends BasePageState<VisitationViewPage, VisitationViewBloc> {
 
+
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getBloc().add(VisitationViewLoadVisitationEvent(date: widget.visitationViewLoadVisitationModel.date!));
 
   }
 

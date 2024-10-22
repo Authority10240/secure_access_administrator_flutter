@@ -24,31 +24,32 @@ class VisitationViewBloc
 }): super(VisitationViewPageInitState()) {
         on<VisitationViewLoadVisitationEvent>((event, emit)=>
         _onVisitationViewLoadVisitationEvent(event, emit));
-
+        
         on<VisitationViewLoadVisitationVehicleEvent>((event, emit)=>
         _onVisitationViewLoadVisitationVehicleEvent(event,emit));
     }
-
+    
     final VisitationViewLoadVisitationVehicleUseCase viewLoadVisitationVehicleUseCase;
     final VisitationViewLoadVisitationUseCase visitationViewLoadVisitationUseCase;
-
-
+    
+    
     Future<void> _onVisitationViewLoadVisitationEvent(
         VisitationViewLoadVisitationEvent event,
         Emitter<VisitationViewPageState> emit
         )async{
-
+        
         emit(VisitationViewLoadVisitationState()..dataState = DataState.loading);
         await visitationViewLoadVisitationUseCase.call(
             onSuccess: (model){
-
+                
                 emit(VisitationViewLoadVisitationState(visitations: model)..dataState = DataState.success);
             }, onError: (error)=>emit(VisitationViewLoadVisitationState(
-            errorCode: error!.errorCode,
-            errorMessage: error.message)..dataState = DataState.error));
-
+            errorCode: error!.errorCode, 
+            errorMessage: error.message)..dataState = DataState.error),
+        params: VisitationViewLoadVisitationUseCaseParams(date: event.date));
+        
     }
-
+    
     Future<void> _onVisitationViewLoadVisitationVehicleEvent(
         VisitationViewLoadVisitationVehicleEvent event,
         Emitter<VisitationViewPageState> emit
@@ -57,8 +58,8 @@ class VisitationViewBloc
         await viewLoadVisitationVehicleUseCase.call(
             onSuccess: (model)=> emitSideEffect(VisitationViewLoadVisitationVehicleSideEffect(
                 visitationViewLoadVisitationModel: event.visitationViewLoadVisitationModel,
-            visitationViewLoadVisitationVehicleModel: model)..effectState = EffectState.success),
+            visitationViewLoadVisitationVehicleModel: model)..effectState = EffectState.success), 
             onError: (error)=> emitSideEffect(VisitationViewLoadVisitationVehicleSideEffect(errorMessage: error!.message, errorCode: error.errorCode)));
-
+        
     }
 } 

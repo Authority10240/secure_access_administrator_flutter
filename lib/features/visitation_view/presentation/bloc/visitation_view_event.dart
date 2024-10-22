@@ -4,6 +4,8 @@ abstract class VisitationViewPageEvent extends BaseEvent {}
 
 class VisitationViewLoadVisitationEvent extends VisitationViewPageEvent{
 
+  VisitationViewLoadVisitationEvent({required this.date});
+  final String date;
 }
 
 
