@@ -17,7 +17,8 @@ part 'visitation_view_state.dart';
 
 @injectable
 class VisitationViewBloc
-    extends BaseBloc<VisitationViewPageEvent, VisitationViewPageState> {
+    extends BaseBloc<VisitationViewPageEvent, VisitationViewPageState>
+    with BlocSideEffectMixin<VisitationViewPageEvent, VisitationViewPageState, VisitationViewSideEffect>{
     VisitationViewBloc({
         required this.visitationViewLoadVisitationUseCase,
         required this.viewLoadVisitationVehicleUseCase

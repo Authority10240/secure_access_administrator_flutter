@@ -18,6 +18,7 @@ import 'package:secure_access_administrator/features/dashboard/data/models/dashb
 import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/car_description_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/dashboard_vistation_summary_widget.dart';
+import 'package:secure_access_administrator/features/visitation_view/presentation/visitation_view_page.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 import 'package:get/get.dart';
 import 'bloc/dashboard_bloc.dart';
@@ -118,36 +119,43 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             DashboardVisitationSummaryWidget(
+                              onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().toString().toFormattedDate(),)),
                               buttonCaption: appLocalizations.more,
                               heading: appLocalizations.visitations,
                               stream: state.todaysVisitations,
                               date: appLocalizations.today,),
                             DashboardVisitationSummaryWidget(
+                              onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 1)).toString().toFormattedDate(),)),
                               buttonCaption: appLocalizations.more,
                               heading: appLocalizations.visitations,
                               stream: state.yesterdaysVisitations,
                               date: appLocalizations.yesterday,),
                             DashboardVisitationSummaryWidget(
+                                onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 2)).toString().toFormattedDate(),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.twoDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 2)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
+                                onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 3)).toString().toFormattedDate(),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.threeDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 3)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
+                                onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 4)).toString().toFormattedDate(),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.fourDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 4)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
+                                onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 5)).toString().toFormattedDate(),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.fiveDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 5)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
+                                onTap: ()=> Get.to(VisitationViewPage(date: DateTime.now().subtract(const Duration(days: 6)).toString().toFormattedDate(),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.sixDaysBackVisitations,

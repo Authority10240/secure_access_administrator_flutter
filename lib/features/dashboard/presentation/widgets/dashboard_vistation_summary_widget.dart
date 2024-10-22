@@ -9,6 +9,7 @@ import 'package:secure_access_administrator/features/dashboard/presentation/dash
 
 class DashboardVisitationSummaryWidget extends StatefulWidget {
    DashboardVisitationSummaryWidget({
+     required this.onTap,
      required this.buttonCaption,
      required this.heading,
      required this.date,required this.stream, super.key});
@@ -17,6 +18,7 @@ class DashboardVisitationSummaryWidget extends StatefulWidget {
    final String date;
    final String heading;
    final String buttonCaption;
+   final Function onTap;
 
   @override
   State<DashboardVisitationSummaryWidget> createState() => _DashboardVisitationSummaryWidgetState();
@@ -31,7 +33,7 @@ class _DashboardVisitationSummaryWidgetState extends State<DashboardVisitationSu
         
         int? carVisitations = snapshot.data?.docs?.where((visitation)=> visitation.data()?.transportationType == TransportationType.driveIn.toString() ).toList().length;
         int? pedestrianVisitations = snapshot.data?.docs?.where((visitation)=> visitation.data()?.transportationType == TransportationType.walkIn.toString() ).toList().length;
-        return Card(
+        return InkWell(child: Card(
           elevation: 11,
           child:  SizedBox(height: 150, width: 300,
             child:snapshot.hasData?
@@ -66,7 +68,8 @@ class _DashboardVisitationSummaryWidgetState extends State<DashboardVisitationSu
                     45.height,
                     Text(widget.buttonCaption,style:  TextStyle(color: AppColorScheme.primary),)
               ])):preloaderWidget(),),
-        );
+        ),onTap: ()=>widget.onTap()
+        ,);
       },
     );
   }

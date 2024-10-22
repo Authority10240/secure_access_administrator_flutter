@@ -1,23 +1,27 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
 import 'package:get/get.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
+import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/dashboard_page.dart';
 import 'package:secure_access_administrator/features/visitation_view/data/models/visitation_view_model_response/visitation_view_load_visitation_model.dart';
+import 'package:secure_access_administrator/features/visitation_view/presentation/widget/visitation_car_description_widget.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 
 import 'bloc/visitation_view_bloc.dart';
+import 'bloc/visitation_view_side_effect.dart';
 
 
 class VisitationViewPage extends BasePage {
-  const VisitationViewPage({super.key, required this.visitationViewLoadVisitationModel});
+  const VisitationViewPage({super.key, required this.date});
 
-  final VisitationViewLoadVisitationModel visitationViewLoadVisitationModel;
+  final String date ;
 
   @override
   _VisitationViewPageState createState() => _VisitationViewPageState();
@@ -25,14 +29,11 @@ class VisitationViewPage extends BasePage {
 
 class _VisitationViewPageState extends BasePageState<VisitationViewPage, VisitationViewBloc> {
 
-
-
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getBloc().add(VisitationViewLoadVisitationEvent(date: widget.visitationViewLoadVisitationModel.date!));
+    getBloc().add(VisitationViewLoadVisitationEvent(date: widget.date));
 
   }
 
@@ -43,7 +44,31 @@ class _VisitationViewPageState extends BasePageState<VisitationViewPage, Visitat
 
   @override
   Widget buildView(BuildContext context) {
-    return BlocConsumer<VisitationViewBloc, VisitationViewPageState>(
+    return BlocConsumerWithSideEffects<VisitationViewBloc, VisitationViewPageState, VisitationViewSideEffect>(
+      bloc: getBloc(),
+      sideEffectsListener:(context, effect) {
+        if(effect is VisitationViewLoadVisitationVehicleSideEffect
+        ){
+
+          if(effect.effectState == EffectState.loading) {
+            preloaderWidgetOverlay(context);
+          }
+          if(effect.effectState == EffectState.error){
+            Navigator.pop(context);
+            Get.snackbar(appLocalizations.error, effect.errorMessage!);
+          }
+
+          if(effect.effectState == EffectState.success) {
+            Navigator.pop(context);
+            visitationCarDescriptionDialog(
+                appLocalizations: appLocalizations,
+                vehicle: effect.visitationViewLoadVisitationVehicleModel!,
+                visitation: effect.visitationViewLoadVisitationModel!
+
+            );
+          }
+        }
+      },
       listener: (context, state){},
       builder: (context, state) {
          return         SingleChildScrollView(
