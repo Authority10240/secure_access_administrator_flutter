@@ -14,8 +14,9 @@ class CustomTextField<BaseBloc,BaseState> extends StatelessWidget {
     this.suffixIcon,
     this.width,
     this.enable,
-    required this.validator,
-    this.obscure});
+     this.validator,
+    this.obscure,
+     this.onChanged});
   bool? enable = true;
   bool? obscure = false;
   final TextEditingController controller;
@@ -23,7 +24,8 @@ class CustomTextField<BaseBloc,BaseState> extends StatelessWidget {
   final Widget? suffixIcon;
   final String labelText;
   final double? width;
-  final String? Function(String?)  validator;
+   Function(String)? onChanged;
+  final String? Function(String?)?  validator;
   final Function()? onTap;
   final bool? readOnly;
 
@@ -33,6 +35,7 @@ class CustomTextField<BaseBloc,BaseState> extends StatelessWidget {
     return Center(
 
       child: TextFormField(
+        onChanged:  onChanged,
         onTap:()=> onTap!= null ?onTap!():null,
         enabled: enable ,
         validator: this.validator ,

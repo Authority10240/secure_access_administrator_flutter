@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
+
 import 'dart:async';
 
 import 'base_event.dart';

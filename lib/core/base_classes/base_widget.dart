@@ -5,7 +5,7 @@ import 'base_bloc.dart';
 import 'base_state.dart';
 
 abstract class BaseWidget extends StatefulWidget{
-  const BaseWidget({Key? key}) : super(key:key);
+  const BaseWidget({super.key});
 }
 
 abstract class BaseWidgetState<T extends BaseWidget , B extends BaseBloc > extends State<T>{

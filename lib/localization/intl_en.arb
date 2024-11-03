@@ -67,7 +67,7 @@
   "bus": "Bus",
   "whatTypeOfVehicleAreTheyDriving": "What type of vehicle are they driving?",
   "whatKindOfIdentificationDoTheyHave": "What kind of identification do they have?",
-  "carDetails": "Car details:",
+  "carDetails": "Car details",
   "description": "Description",
   "vin": "VIN",
   "engineNumber": "Engine Number",
@@ -109,7 +109,10 @@
   "yesterday": "Yesterday",
   "visitations": "Visitation(s)",
   "more": "More",
-  "walkedIn": "Walked in"
+  "walkedIn": "Walked in",
+  "dateSearch": "Date Search",
+  "doubleTapToOpenClose": "Double tap to open/close"
+
 
 
 

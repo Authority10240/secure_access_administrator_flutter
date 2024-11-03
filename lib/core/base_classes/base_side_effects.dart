@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+
 
 class BaseSideEffects extends Equatable {
 
@@ -25,8 +25,4 @@ enum EffectState{
   reloading,
   success,
   error
-}
-
-abstract class BaseBlocPrimaryState{
-  void call(BuildContext context);
 }

@@ -45,24 +45,18 @@ import '../features/login/domain/repository/login_repository/sign_in_clicked_rep
 import '../features/login/domain/use_cases/login_usecase/sign_in_clicked_usecase.dart'
     as _i845;
 import '../features/login/presentation/bloc/login_bloc.dart' as _i1022;
-import '../features/visitation_view/data/data_source/remote/visitation_view_data_source.dart'
-    as _i825;
-import '../features/visitation_view/data/data_source/remote/visitation_view_data_source_impl.dart'
-    as _i482;
-import '../features/visitation_view/data/repository_impl/visitation_view_repository_impl/visitation_view_load_visitation_repository_impl.dart'
-    as _i635;
-import '../features/visitation_view/data/repository_impl/visitation_view_repository_impl/visitation_view_load_visitation_vehicle_repository_impl.dart'
-    as _i202;
-import '../features/visitation_view/domain/repository/visitation_view_repository/visitation_view_load_visitation_repository.dart'
-    as _i25;
-import '../features/visitation_view/domain/repository/visitation_view_repository/visitation_view_load_visitation_vehicle_repository.dart'
-    as _i209;
-import '../features/visitation_view/domain/use_cases/visitation_view_usecase/visitation_view_load_visitation_usecase.dart'
-    as _i180;
-import '../features/visitation_view/domain/use_cases/visitation_view_usecase/visitation_view_load_visitation_vehicle_usecase.dart'
-    as _i865;
-import '../features/visitation_view/presentation/bloc/visitation_view_bloc.dart'
-    as _i516;
+import '../features/visitation_search/data/data_source/remote/visitation_search_remote_data_source.dart'
+    as _i1059;
+import '../features/visitation_search/data/data_source/remote/visitation_search_remote_data_srource_impl.dart'
+    as _i646;
+import '../features/visitation_search/data/repository_impl/visitation_search_repository_impl/visitation_search_value_changed_repository_impl.dart'
+    as _i583;
+import '../features/visitation_search/domain/repository/visitation_search_repository/visitation_search_value_changed_repository.dart'
+    as _i729;
+import '../features/visitation_search/domain/use_cases/visitation_search_usecase/visitation_search_value_changed_usecase.dart'
+    as _i500;
+import '../features/visitation_search/presentation/bloc/visitation_search_bloc.dart'
+    as _i486;
 import '../generated/l10n.dart' as _i504;
 import 'locator.dart' as _i775;
 
@@ -85,26 +79,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i822.BiometricsLocalModel(enabled: gh<bool>()));
     gh.factory<_i597.SignInLocalModel>(
         () => _i597.SignInLocalModel(signedIn: gh<bool>()));
-    gh.factory<_i825.VisitationViewDataSource>(
-        () => _i482.VisitationViewDataSourceImpl());
-    gh.factory<_i25.VisitationViewLoadVisitationRepository>(() =>
-        _i635.VisitataionViewLoadVisitationRepositoryImpl(
-            visitationViewDataSource: gh<_i825.VisitationViewDataSource>()));
+    gh.singleton<_i1059.VisitationSearchRemoteDataSource>(
+        () => _i646.VisitationSearchRemotedataSourceImple());
     gh.factory<_i274.DashboardService>(() => _i83.DashboardServiceImpl());
-    gh.factory<_i209.VisitationViewLoadVisitationVehicleRepository>(() =>
-        _i202.VisitationViewLoadVisitationVehicleRepositoryImpl(
-            visitationViewDataSource: gh<_i825.VisitationViewDataSource>()));
-    gh.factory<_i865.VisitationViewLoadVisitationVehicleUseCase>(() =>
-        _i865.VisitationViewLoadVisitationVehicleUseCase(
-            visitationViewLoadVisitationVehicleRepository:
-                gh<_i209.VisitationViewLoadVisitationVehicleRepository>()));
     gh.factory<_i262.DashboardGetVisitationsRepository>(() =>
         _i351.DashboardGetVisitationsRepositoryImpl(
             dashboardService: gh<_i274.DashboardService>()));
-    gh.factory<_i180.VisitationViewLoadVisitationUseCase>(() =>
-        _i180.VisitationViewLoadVisitationUseCase(
-            visitationViewLoadVisitationRepository:
-                gh<_i25.VisitationViewLoadVisitationRepository>()));
     gh.factory<_i1054.SignInService>(
         () => _i926.SignInServiceImpl(firebaseAuth: gh<_i59.FirebaseAuth>()));
     gh.factory<_i591.DashboardGetVisitationsUseCase>(() =>
@@ -119,12 +99,10 @@ extension GetItInjectableX on _i174.GetIt {
             signInService: gh<_i1054.SignInService>()));
     gh.factory<_i845.SignInClickedUseCase>(() => _i845.SignInClickedUseCase(
         signInClickedRepository: gh<_i171.SignInClickedRepository>()));
-    gh.factory<_i516.VisitationViewBloc>(() => _i516.VisitationViewBloc(
-          visitationViewLoadVisitationUseCase:
-              gh<_i180.VisitationViewLoadVisitationUseCase>(),
-          viewLoadVisitationVehicleUseCase:
-              gh<_i865.VisitationViewLoadVisitationVehicleUseCase>(),
-        ));
+    gh.factory<_i729.VisitationSearchValueChangedRepository>(() =>
+        _i583.VisitationSearchValueChangedRepositoryImpl(
+            visitationSearchRemoteDataSource:
+                gh<_i1059.VisitationSearchRemoteDataSource>()));
     gh.factory<_i546.DashboardPageLoadVisitationVehicleUseCase>(() =>
         _i546.DashboardPageLoadVisitationVehicleUseCase(
             dashboardPageLoadVisitationVehicleRepository:
@@ -144,6 +122,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1022.LoginBloc>(() => _i1022.LoginBloc(
         signInClickedUseCase: gh<_i845.SignInClickedUseCase>()));
+    gh.factory<_i500.VisitationSearchValueChangedUseCase>(() =>
+        _i500.VisitationSearchValueChangedUseCase(
+            visitationSearchValueChangedRepository:
+                gh<_i729.VisitationSearchValueChangedRepository>()));
+    gh.factory<_i486.VisitationSearchBloc>(() => _i486.VisitationSearchBloc(
+        valueChangedUseCase: gh<_i500.VisitationSearchValueChangedUseCase>()));
     return this;
   }
 }

@@ -32,7 +32,6 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
 
 
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passWordController = TextEditingController();
   late String phoneNumber ;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -104,6 +103,7 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
                      Center(child: Text(appLocalizations.and, style:  textStyleDirectives(),)),
                      smallSpacer,
                      CustomTextField(
+
                        obscure: state.obscure,
                        controller: _passWordController,
                        labelText: getLocalization().password,

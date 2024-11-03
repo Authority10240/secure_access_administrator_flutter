@@ -712,10 +712,10 @@ class AppLocalizations {
     );
   }
 
-  /// `Car details:`
+  /// `Car details`
   String get carDetails {
     return Intl.message(
-      'Car details:',
+      'Car details',
       name: 'carDetails',
       desc: '',
       args: [],
@@ -1137,6 +1137,26 @@ class AppLocalizations {
     return Intl.message(
       'Walked in',
       name: 'walkedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date Search`
+  String get dateSearch {
+    return Intl.message(
+      'Date Search',
+      name: 'dateSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Double tap to open/close`
+  String get doubleTapToOpenClose {
+    return Intl.message(
+      'Double tap to open/close',
+      name: 'doubleTapToOpenClose',
       desc: '',
       args: [],
     );
