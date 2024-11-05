@@ -27,3 +27,4 @@ class VisitationSearchLoadVisitationState extends VisitationSearchPageState{
 
   VisitationSearchLoadVisitationState({super.errorCode, super.errorMessage,super.carDrawerOpen, super.dateDrawerOpen, super.personnelDrawerOpen, super.visitations});
 }
+

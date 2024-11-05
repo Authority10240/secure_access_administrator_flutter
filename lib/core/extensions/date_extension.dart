@@ -8,4 +8,9 @@ extension DateExtension on String{
   String toFormattedTime(){
     return DateFormat("hh:mm").format(DateTime.parse(this));
   }
+
+  String toFirebaseDate (){
+    return DateFormat('dd/MM/yyyy').format(DateTime.parse(this));
+  }
 }
+

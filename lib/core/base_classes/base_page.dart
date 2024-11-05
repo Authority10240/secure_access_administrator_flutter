@@ -27,9 +27,9 @@ abstract class BasePageState<T extends BasePage, B extends BaseBloc> extends Bas
           bottomNavigationBar: bottomNavigationBar(),
           floatingActionButton: floatingActionButton(),
           body: Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.sizeOf(context).height / 14,
-              bottom: MediaQuery.sizeOf(context).height / 14,
+            padding: const EdgeInsets.only(
+              top: 35,
+              bottom: 10,
             ),
             child: buildView(context),
           ),

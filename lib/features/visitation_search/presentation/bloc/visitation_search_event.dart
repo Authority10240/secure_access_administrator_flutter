@@ -19,3 +19,13 @@ class VisitationSearchLoadVisitationEvent extends VisitationSearchPageEvent{
   VisitationSearchLoadVisitationEvent({required this.visitationSearchCriteria});
 
 }
+
+class VisitationSearchLoadVehicleEvent extends VisitationSearchPageEvent{
+   final DashboardGetVisitationsModel dashboardGetVisitationsModel;
+   final String visitationId;
+
+   VisitationSearchLoadVehicleEvent({
+     required this.dashboardGetVisitationsModel,
+   required this.visitationId});
+
+}

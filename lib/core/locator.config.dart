@@ -49,10 +49,16 @@ import '../features/visitation_search/data/data_source/remote/visitation_search_
     as _i1059;
 import '../features/visitation_search/data/data_source/remote/visitation_search_remote_data_srource_impl.dart'
     as _i646;
+import '../features/visitation_search/data/repository_impl/visitation_search_repository_impl/visitation_search_load_vehicle_repository_impl.dart'
+    as _i480;
 import '../features/visitation_search/data/repository_impl/visitation_search_repository_impl/visitation_search_value_changed_repository_impl.dart'
     as _i583;
+import '../features/visitation_search/domain/repository/visitation_search_repository/visitation_search_load_vehicle_repository.dart'
+    as _i705;
 import '../features/visitation_search/domain/repository/visitation_search_repository/visitation_search_value_changed_repository.dart'
     as _i729;
+import '../features/visitation_search/domain/use_cases/visitation_search_usecase/visitation_search_load_vehicle_usecase.dart'
+    as _i340;
 import '../features/visitation_search/domain/use_cases/visitation_search_usecase/visitation_search_value_changed_usecase.dart'
     as _i500;
 import '../features/visitation_search/presentation/bloc/visitation_search_bloc.dart'
@@ -81,6 +87,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i597.SignInLocalModel(signedIn: gh<bool>()));
     gh.singleton<_i1059.VisitationSearchRemoteDataSource>(
         () => _i646.VisitationSearchRemotedataSourceImple());
+    gh.factory<_i705.VisitationSearchLoadVehicleRepository>(() =>
+        _i480.VisitationSearchLoadVehicleRepositoryImpl(
+            visitationSearchRemoteDataSource:
+                gh<_i1059.VisitationSearchRemoteDataSource>()));
     gh.factory<_i274.DashboardService>(() => _i83.DashboardServiceImpl());
     gh.factory<_i262.DashboardGetVisitationsRepository>(() =>
         _i351.DashboardGetVisitationsRepositoryImpl(
@@ -94,6 +104,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i261.DashboardPageLoadVisitationVehicleRepository>(() =>
         _i673.DashboardPageLoadVisitationVehicleRepositoryImpl(
             dashboardService: gh<_i274.DashboardService>()));
+    gh.factory<_i340.VisitationSearchLoadVehicleUseCase>(() =>
+        _i340.VisitationSearchLoadVehicleUseCase(
+            visitationSearchLoadVehicleRepository:
+                gh<_i705.VisitationSearchLoadVehicleRepository>()));
     gh.factory<_i171.SignInClickedRepository>(() =>
         _i673.SignInClickedRepositoryImpl(
             signInService: gh<_i1054.SignInService>()));
@@ -127,7 +141,10 @@ extension GetItInjectableX on _i174.GetIt {
             visitationSearchValueChangedRepository:
                 gh<_i729.VisitationSearchValueChangedRepository>()));
     gh.factory<_i486.VisitationSearchBloc>(() => _i486.VisitationSearchBloc(
-        valueChangedUseCase: gh<_i500.VisitationSearchValueChangedUseCase>()));
+          visitationSearchLoadVehicleUseCase:
+              gh<_i340.VisitationSearchLoadVehicleUseCase>(),
+          valueChangedUseCase: gh<_i500.VisitationSearchValueChangedUseCase>(),
+        ));
     return this;
   }
 }

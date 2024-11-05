@@ -1,17 +1,19 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
 import 'package:get/get.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/colors.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
+import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/dashboard_page.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/bloc/visitation_search_bloc.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/modal/visitation_search_criteria.dart';
+import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/car_description_widget.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/query_widget.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 
@@ -31,8 +33,10 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
   void initState() {
     // TODO: implement initState
     super.initState();
-    getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-      from: widget.from, to: widget.to
+    getBloc().add(VisitationSearchLoadVisitationEvent(
+        visitationSearchCriteria: VisitationSearchCriteria(
+        from: widget.from,
+        to: widget.to
     )));
 
   }
@@ -45,22 +49,47 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
   TextEditingController idController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
+  TextEditingController unitController = TextEditingController();
+  TextEditingController  fromController = TextEditingController();
+  TextEditingController toController = TextEditingController();
 
   @override
   Widget buildView(BuildContext context) {
-    return BlocConsumer<VisitationSearchBloc, VisitationSearchPageState>(
+    return BlocConsumerWithSideEffects<VisitationSearchBloc, VisitationSearchPageState, VisitationSearchSideEffect>(
+      bloc: getBloc(),
+      sideEffectsListener: (context,effect){
+        if(effect is VisitationSearchLoadVehicleSideEffect){
+          if(effect.effectState == EffectState.loading){
+            preloaderWidgetOverlay(context);
+          }
+          if(effect.effectState == EffectState.error){
+            Navigator.pop(context);
+            Get.snackbar(appLocalizations.error, effect.errorMessage!);
+          }
+          if(effect.effectState == EffectState.success){
+            Navigator.pop(context);
+            carDescriptionDialog(
+                appLocalizations: appLocalizations,
+                vehicle: effect.dashboardPageLoadVisitationsVehicleModel!,
+                visitation: effect.dashboardGetVisitationsModel!
+
+            );
+          }
+        }
+      },
       listener: (context, state){},
       builder: (context, state) {
-         return Container(
-           height: MediaQuery.sizeOf(context).height,
+         return SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.sizeOf(context).height,
            child: Column(
              children: [
                Padding(padding:  EdgeInsets.symmetric(horizontal: 20),
-           child: InkWell(onDoubleTap: ()=> getBloc().add(VisitationSearchOpenDrawerEvent(personnelDrawerOpen: !state.personnelDrawerOpen!)),child: Card(
+           child: InkWell(onDoubleTap: ()=> getBloc().add(VisitationSearchOpenDrawerEvent(personnelDrawerOpen: !state.personnelDrawerOpen!)),
+               child: Card(
                  elevation: 11,
                  child: Container(
                    padding:  EdgeInsets.all( 20),
-
                    height:state.personnelDrawerOpen??false? 150:70,
                    width: MediaQuery.sizeOf(context).width,
                    child: state.personnelDrawerOpen??false?Row(
@@ -73,7 +102,9 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                           label: 'ID/Passport',
                           onChange: (value)=>
                               getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-                                  idPassport: value
+                                  surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                                  name: nameController.text.isNotEmpty? nameController.text: null,
+                                  idPassport: idController.text.isNotEmpty? value: null
                               )))),
                        QueryWidget(
                            caption: 'Hello',
@@ -81,7 +112,9 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                            hint: 'Search by name',
                            label: 'Name',
                            onChange: (value)=> getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-                               name: value
+                               surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                               name: nameController.text.isNotEmpty? value: null,
+                               idPassport: idController.text.isNotEmpty? idController.text: null
                            )))),
                        QueryWidget(
                            caption: 'Hello',
@@ -89,7 +122,9 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                            hint: 'Search by surname',
                            label: 'Surname',
                            onChange: (value)=>getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-                               surname: value
+                               surname: surnameController.text.isNotEmpty? value: null,
+                             name: nameController.text.isNotEmpty? nameController.text: null,
+                             idPassport: idController.text.isNotEmpty? idController.text: null
                            )))),
                      ],
                    ): SizedBox(
@@ -102,49 +137,6 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                    ),),
                )
                ),),
-               InkWell(
-               onDoubleTap: ()=> getBloc().add(VisitationSearchOpenDrawerEvent(carDrawerOpen: !state.carDrawerOpen!)),
-               child: Padding(padding:  EdgeInsets.symmetric(horizontal: 20),
-                   child: Card(
-                     elevation: 11,
-                     child: Container(
-                       padding:  EdgeInsets.all( 20),
-                        height:state.carDrawerOpen??false? 150:70,
-                       width: MediaQuery.sizeOf(context).width,
-                       child:state.carDrawerOpen??false? Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                         children: [
-                           QueryWidget(
-                               caption: 'Hello',
-                               controller: idController,
-                               hint: 'Search by id',
-                               label: 'Registration',
-                               onChange: (value){}),
-                           QueryWidget(
-                               caption: 'Hello',
-                               controller: nameController,
-                               hint: 'Search by name',
-                               label: 'Brand',
-                               onChange: (value){}),
-                           QueryWidget(
-                               caption: 'Hello',
-                               controller: surnameController,
-                               hint: 'Search by surname',
-                               label: 'Color',
-                               onChange: (value){}),
-                         ],
-                       ):SizedBox(
-                         child: Center(child: Column(
-                           children: [
-                             Text(appLocalizations.carDetails, style: TextStyle(color: AppColorScheme.primary,
-                                 fontSize: 20),),
-                                       ],
-                         ),),
-
-                       ),),
-                   )
-               ),),
-
                InkWell(
                  onDoubleTap: ()=> getBloc().add(VisitationSearchOpenDrawerEvent(dateDrawerOpen: !state.dateDrawerOpen!)),
                  child: Padding(padding:  EdgeInsets.symmetric(horizontal: 20),
@@ -160,19 +152,19 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                          children: [
                            QueryWidget(
                                caption: 'Hello',
-                               controller: idController,
+                               controller: fromController,
                                hint: 'Search by id',
                                label: 'From',
                                onChange: (value){}),
                            QueryWidget(
                                caption: 'Hello',
-                               controller: nameController,
+                               controller: toController,
                                hint: 'Search by name',
                                label: 'To',
                                onChange: (value){}),
                            QueryWidget(
                                caption: 'Hello',
-                               controller: surnameController,
+                               controller: unitController,
                                hint: 'Search by surname',
                                label: 'Unit',
                                onChange: (value){}),
@@ -180,7 +172,8 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                        ):SizedBox(
         child: Center(child: Column(
         children: [
-        Text(appLocalizations.dateSearch,style: TextStyle(color: AppColorScheme.primary,
+        Text(appLocalizations.dateSearch,
+          style: TextStyle(color: AppColorScheme.primary,
             fontSize: 20),),
            ],
         ),),
@@ -197,12 +190,16 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                            stream: state.visitations,
                            builder: (context, snapshot){
                              List<QueryDocumentSnapshot<DashboardGetVisitationsModel?>>? data = snapshot.data?.docs??[];
-                             return Expanded(child: ListView.builder(
+                             return Expanded(child:
+                             ListView.builder(
                                  itemCount: snapshot.data?.docs.length??0,
                                  itemBuilder: (context, index){
                                    DashboardGetVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
                                    String? visitationId  = snapshot.data?.docs.elementAt(index).id;
-                                   return Card(elevation: 11,child: Container( child: ListTile(
+                                   return Padding(padding: EdgeInsets.symmetric(horizontal: 20),child: Card(
+                                     elevation: 11,
+                                     child: Container(
+                                         child: ListTile(
                                        leading: Text("Unit: ${visitation?.unit??""}",style: textStyleSubHeading(),),
                                        title: Text("${appLocalizations.name}: ${visitation?.firstName??""}\n"
                                            "${appLocalizations.surname}: ${visitation?.lastName??""}",style: textStyleSubHeading(),),
@@ -215,10 +212,11 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                                            color: Colors.blue,),
                                          onTap: (){
                                            if(visitation?.transportationType == TransportationType.driveIn.toString()) {
+                                              getBloc().add(VisitationSearchLoadVehicleEvent(dashboardGetVisitationsModel: visitation!, visitationId: visitationId!));
                                            }else{
                                              Get.snackbar(appLocalizations.walkIn, '${visitation?.firstName} ${visitation?.lastName} ${appLocalizations.walkedIn}');
                                            }
-                                         },))),);
+                                         },))),));
                                  }));
                            })
                      ],
@@ -226,6 +224,7 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                    )))
              ],
            ),
+          )
          );
       },
     );
