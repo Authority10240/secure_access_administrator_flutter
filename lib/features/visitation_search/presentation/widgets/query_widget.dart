@@ -9,12 +9,14 @@ class QueryWidget extends StatelessWidget {
     required this.controller,
     required this.hint,
     required this.label,
-    required this.onChange});
+    required this.onChange,
+  required this.onTap});
 
   final String caption;
   final String hint;
   final String label;
   final Function(String) onChange;
+  final Function onTap;
   final TextEditingController controller;
 
   @override
@@ -26,6 +28,7 @@ class QueryWidget extends StatelessWidget {
         Text(label),
         10.height,
         CustomTextField(
+          onTap:()=> onTap(),
           width: 400,
           onChanged: (value)=> onChange(value),
           controller: controller, labelText: label,

@@ -45,6 +45,8 @@ import '../features/login/domain/repository/login_repository/sign_in_clicked_rep
 import '../features/login/domain/use_cases/login_usecase/sign_in_clicked_usecase.dart'
     as _i845;
 import '../features/login/presentation/bloc/login_bloc.dart' as _i1022;
+import '../features/vehicle_search/presentation/bloc/vehicle_search_bloc.dart'
+    as _i545;
 import '../features/visitation_search/data/data_source/remote/visitation_search_remote_data_source.dart'
     as _i1059;
 import '../features/visitation_search/data/data_source/remote/visitation_search_remote_data_srource_impl.dart'
@@ -81,6 +83,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i361.Dio>(() => registerModules.dio);
     gh.factory<_i504.AppLocalizations>(() => registerModules.appLocalizations);
     gh.factory<_i59.FirebaseAuth>(() => registerModules.firebaseAuth);
+    gh.factory<_i545.VehicleSearchBloc>(() => _i545.VehicleSearchBloc());
     gh.factory<_i822.BiometricsLocalModel>(
         () => _i822.BiometricsLocalModel(enabled: gh<bool>()));
     gh.factory<_i597.SignInLocalModel>(

@@ -15,19 +15,23 @@ class VisitationSearchRemotedataSourceImple extends VisitationSearchRemoteDataSo
         fromFirestore: (snapShot,_)=> DashboardGetVisitationsModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());
 
-DateTime from;
+DateTime? from;
+DateTime? to;
 
 if(visitationSearchCriteria.from!= null){
   from = DateTime(visitationSearchCriteria.from!.year, visitationSearchCriteria.from!.month, visitationSearchCriteria.from!.day);
 }
 
+    if(visitationSearchCriteria.to != null)
+       to = DateTime(visitationSearchCriteria.to!.year, visitationSearchCriteria.to!.month, visitationSearchCriteria.to!.day);
 
-
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>> list = _visitationsRef.where('firstName',isEqualTo: visitationSearchCriteria.name)
+    Stream<QuerySnapshot<DashboardGetVisitationsModel?>> list = _visitationsRef
+        .where('firstName',isEqualTo: visitationSearchCriteria.name)
         .where('lastName',isEqualTo: visitationSearchCriteria.surname)
+        .where('unit', isEqualTo: visitationSearchCriteria.unit)
         .where('identificationNumber',isEqualTo: visitationSearchCriteria.idPassport)
-        .where('timeStamp', isLessThanOrEqualTo:visitationSearchCriteria.to )
-        .where('timeStamp', isGreaterThanOrEqualTo:visitationSearchCriteria.from ).snapshots();
+        .where('timeStamp', isLessThanOrEqualTo:to != null? Timestamp.fromDate(to ): null)
+        .where('timeStamp', isGreaterThanOrEqualTo:from != null? Timestamp.fromDate(from ): null).snapshots();
     return  list;
   }
 

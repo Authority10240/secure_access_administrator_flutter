@@ -21,6 +21,7 @@ abstract class BasePageState<T extends BasePage, B extends BaseBloc> extends Bas
         onWillPop: onBackPressed,
         child: Scaffold(
           resizeToAvoidBottomInset: true,
+          floatingActionButtonLocation: floatingActionButtonLocation(),
           backgroundColor: scaffoldBackgroundColor(),
           key: _scaffoldkey,
           appBar: buildAppbar(),

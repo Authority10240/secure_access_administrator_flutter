@@ -6,11 +6,14 @@ import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/colors.dart';
+import 'package:secure_access_administrator/core/constants/date.dart';
+import 'package:secure_access_administrator/core/extensions/date_extension.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/dashboard_page.dart';
+import 'package:secure_access_administrator/features/vehicle_search/presentation/vehicle_search_page.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/bloc/visitation_search_bloc.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/modal/visitation_search_criteria.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/car_description_widget.dart';
@@ -50,7 +53,9 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
   TextEditingController nameController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
   TextEditingController unitController = TextEditingController();
-  TextEditingController  fromController = TextEditingController();
+  DateTime?  from ;
+  DateTime? to;
+  TextEditingController fromController = TextEditingController();
   TextEditingController toController = TextEditingController();
 
   @override
@@ -96,6 +101,7 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                      children: [
                       QueryWidget(
+                          onTap: (){},
                           caption: 'Hello',
                           controller: idController,
                           hint: 'Search by id',
@@ -104,27 +110,41 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                               getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
                                   surname: surnameController.text.isNotEmpty? surnameController.text: null,
                                   name: nameController.text.isNotEmpty? nameController.text: null,
-                                  idPassport: idController.text.isNotEmpty? value: null
+                                  idPassport: idController.text.isNotEmpty? idController.text: null,
+                                  to: to,
+                                  from: from,
+                                  unit: unitController.text.isNotEmpty? unitController.text:null
+
                               )))),
                        QueryWidget(
+                           onTap: (){},
                            caption: 'Hello',
                            controller: nameController,
                            hint: 'Search by name',
                            label: 'Name',
-                           onChange: (value)=> getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                           onChange: (value)=>   getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
                                surname: surnameController.text.isNotEmpty? surnameController.text: null,
-                               name: nameController.text.isNotEmpty? value: null,
-                               idPassport: idController.text.isNotEmpty? idController.text: null
+                               name: nameController.text.isNotEmpty? nameController.text: null,
+                               idPassport: idController.text.isNotEmpty? idController.text: null,
+                               to: to,
+                               from: from,
+                               unit: unitController.text.isNotEmpty? unitController.text:null
+
                            )))),
                        QueryWidget(
+                           onTap: (){},
                            caption: 'Hello',
                            controller: surnameController,
                            hint: 'Search by surname',
                            label: 'Surname',
-                           onChange: (value)=>getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-                               surname: surnameController.text.isNotEmpty? value: null,
-                             name: nameController.text.isNotEmpty? nameController.text: null,
-                             idPassport: idController.text.isNotEmpty? idController.text: null
+                           onChange: (value)=>  getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                               surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                               name: nameController.text.isNotEmpty? nameController.text: null,
+                               idPassport: idController.text.isNotEmpty? idController.text: null,
+                               to: to,
+                               from: from,
+                               unit: unitController.text.isNotEmpty? unitController.text:null
+
                            )))),
                      ],
                    ): SizedBox(
@@ -155,19 +175,68 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                                controller: fromController,
                                hint: 'Search by id',
                                label: 'From',
-                               onChange: (value){}),
+                               onChange: (value){},
+                           onTap: ()async{
+                              from = await showDatePicker(context: context,
+                                     firstDate: DateTime.now().subtract(Duration(days: 1825 )),
+                                     lastDate: DateTime.now().add(Duration(days: 1825 ))
+                                 ,currentDate: DateTime.now(),
+                                 );
+                              fromController.text = from.toString().toFormattedDate();
+                              getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                                  surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                                  name: nameController.text.isNotEmpty? nameController.text: null,
+                                  idPassport: idController.text.isNotEmpty? idController.text: null,
+                                to: to,
+                                from: from,
+                                  unit: unitController.text.isNotEmpty? unitController.text:null
+
+                              )));
+                           },),
+                           
                            QueryWidget(
                                caption: 'Hello',
-                               controller: toController,
+                                controller: toController,
                                hint: 'Search by name',
                                label: 'To',
-                               onChange: (value){}),
+                               onChange: (value){},
+                               onTap: ()async{
+                                 to = await showDatePicker(context: context,
+                                   firstDate: DateTime.now().subtract(Duration(days: 1825 )),
+                                   lastDate: DateTime.now().add(Duration(days: 1825 ))
+                                   ,currentDate: DateTime.now(),
+                                 );
+
+                                 toController.text = to.toString().toFormattedDate();
+                                 getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                                     surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                                     name: nameController.text.isNotEmpty? nameController.text: null,
+                                     idPassport: idController.text.isNotEmpty? idController.text: null,
+                                     to: to,
+                                     from: from,
+                                     unit: unitController.text.isNotEmpty? unitController.text:null
+
+                                 )));
+
+                               }),
+
+
                            QueryWidget(
                                caption: 'Hello',
                                controller: unitController,
                                hint: 'Search by surname',
                                label: 'Unit',
-                               onChange: (value){}),
+                               onChange: (value){},
+                           onTap: ()=>getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                               surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                               name: nameController.text.isNotEmpty? nameController.text: null,
+                               idPassport: idController.text.isNotEmpty? idController.text: null,
+                               to: to,
+                               from: from,
+                             unit: unitController.text.isNotEmpty? unitController.text:null
+
+                           ))),),
+
                          ],
                        ):SizedBox(
         child: Center(child: Column(
@@ -241,6 +310,35 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
     return locator<AppLocalizations>();
   }
 
+  @override
+  FloatingActionButtonLocation? floatingActionButtonLocation() {
+    return FloatingActionButtonLocation.centerDocked;
+  }
+
+  @override
+  Widget? floatingActionButton() {
+    return Card(
+      elevation: 11,
+      shadowColor: AppColorScheme.primary,
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width / 6,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
+          InkWell(onTap: (){ Get.back();
+          Get.to(VisitationSearchPage());}
+             ,child: const SizedBox(height: 50,
+          width: 50,
+          child: Icon(Icons.directions_walk),)),
+          Container(height: 40,width: 2,color: AppColorScheme.primary,),
+          InkWell(onTap: (){
+            Get.back();
+            Get.to(VehicleSearchPage());
+          },child: const SizedBox(height: 50,
+            width: 50,
+            child: Icon(Icons.car_crash_sharp),))
+        ],),
+      ),
+    );
+  }
 
 
 
