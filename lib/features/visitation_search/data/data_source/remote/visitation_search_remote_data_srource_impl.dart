@@ -10,7 +10,8 @@ import 'package:secure_access_administrator/features/visitation_search/presentat
 class VisitationSearchRemotedataSourceImple extends VisitationSearchRemoteDataSource{
   @override
   Stream<QuerySnapshot<DashboardGetVisitationsModel?>> visitationSearchValueChanged({required VisitationSearchCriteria visitationSearchCriteria}) {
-    CollectionReference<DashboardGetVisitationsModel> _visitationsRef; _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
+    CollectionReference<DashboardGetVisitationsModel> _visitationsRef;
+    _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
         .withConverter<DashboardGetVisitationsModel>(
         fromFirestore: (snapShot,_)=> DashboardGetVisitationsModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());

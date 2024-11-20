@@ -6,7 +6,6 @@ import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/colors.dart';
-import 'package:secure_access_administrator/core/constants/date.dart';
 import 'package:secure_access_administrator/core/extensions/date_extension.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
@@ -171,6 +170,17 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                          children: [
                            QueryWidget(
+                             onClear: (){
+                               from = null;
+                               fromController.text = '';
+                               getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
+                               surname: surnameController.text.isNotEmpty? surnameController.text: null,
+                               name: nameController.text.isNotEmpty? nameController.text: null,
+                               idPassport: idController.text.isNotEmpty? idController.text: null,
+                               to: to,
+                                   from: from,
+                                   unit: unitController.text.isNotEmpty? unitController.text:null)));
+                             },
                                caption: 'Hello',
                                controller: fromController,
                                hint: 'Search by id',
@@ -181,8 +191,15 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                                      firstDate: DateTime.now().subtract(Duration(days: 1825 )),
                                      lastDate: DateTime.now().add(Duration(days: 1825 ))
                                  ,currentDate: DateTime.now(),
+                                  errorFormatText: 'no date selected',
+                                  errorInvalidText: 'no date selected'
                                  );
-                              fromController.text = from.toString().toFormattedDate();
+                              if(from != null) {
+                                fromController.text =
+                                    from.toString().toFormattedDate();
+                              }else{
+                                fromController.text = '';
+                              }
                               getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
                                   surname: surnameController.text.isNotEmpty? surnameController.text: null,
                                   name: nameController.text.isNotEmpty? nameController.text: null,
@@ -193,32 +210,7 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
 
                               )));
                            },),
-                           
-                           QueryWidget(
-                               caption: 'Hello',
-                                controller: toController,
-                               hint: 'Search by name',
-                               label: 'To',
-                               onChange: (value){},
-                               onTap: ()async{
-                                 to = await showDatePicker(context: context,
-                                   firstDate: DateTime.now().subtract(Duration(days: 1825 )),
-                                   lastDate: DateTime.now().add(Duration(days: 1825 ))
-                                   ,currentDate: DateTime.now(),
-                                 );
 
-                                 toController.text = to.toString().toFormattedDate();
-                                 getBloc().add(VisitationSearchLoadVisitationEvent(visitationSearchCriteria: VisitationSearchCriteria(
-                                     surname: surnameController.text.isNotEmpty? surnameController.text: null,
-                                     name: nameController.text.isNotEmpty? nameController.text: null,
-                                     idPassport: idController.text.isNotEmpty? idController.text: null,
-                                     to: to,
-                                     from: from,
-                                     unit: unitController.text.isNotEmpty? unitController.text:null
-
-                                 )));
-
-                               }),
 
 
                            QueryWidget(

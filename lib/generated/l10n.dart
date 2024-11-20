@@ -1161,6 +1161,26 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `The`
+  String get the {
+    return Intl.message(
+      'The',
+      name: 'the',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` was driven by:`
+  String get wasDrivenBy {
+    return Intl.message(
+      ' was driven by:',
+      name: 'wasDrivenBy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

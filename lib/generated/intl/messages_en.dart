@@ -163,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "testMe": MessageLookupByLibrary.simpleMessage("Test me"),
+        "the": MessageLookupByLibrary.simpleMessage("The"),
         "time": MessageLookupByLibrary.simpleMessage("Time:"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "truck": MessageLookupByLibrary.simpleMessage("Truck"),
@@ -178,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Visitor is driving a"),
         "walkIn": MessageLookupByLibrary.simpleMessage("Walk in"),
         "walkedIn": MessageLookupByLibrary.simpleMessage("Walked in"),
+        "wasDrivenBy": MessageLookupByLibrary.simpleMessage(" was driven by:"),
         "wasDrivingA": MessageLookupByLibrary.simpleMessage("Was driving a"),
         "wcontinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
