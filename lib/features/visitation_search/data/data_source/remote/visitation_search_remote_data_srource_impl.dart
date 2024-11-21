@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:secure_access_administrator/core/constants/database.dart';
+import 'package:secure_access_administrator/core/extensions/date_extension.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/visitation_search/data/data_source/remote/visitation_search_remote_data_source.dart';
@@ -19,8 +20,11 @@ class VisitationSearchRemotedataSourceImple extends VisitationSearchRemoteDataSo
 DateTime? from;
 DateTime? to;
 
+String? dateString;
+
 if(visitationSearchCriteria.from!= null){
   from = DateTime(visitationSearchCriteria.from!.year, visitationSearchCriteria.from!.month, visitationSearchCriteria.from!.day);
+  dateString = from.toString().toFormattedDate();
 }
 
     if(visitationSearchCriteria.to != null)
@@ -32,7 +36,7 @@ if(visitationSearchCriteria.from!= null){
         .where('unit', isEqualTo: visitationSearchCriteria.unit)
         .where('identificationNumber',isEqualTo: visitationSearchCriteria.idPassport)
         .where('timeStamp', isLessThanOrEqualTo:to != null? Timestamp.fromDate(to ): null)
-        .where('timeStamp', isGreaterThanOrEqualTo:from != null? Timestamp.fromDate(from ): null).snapshots();
+        .where('date', isEqualTo:dateString).snapshots();
     return  list;
   }
 

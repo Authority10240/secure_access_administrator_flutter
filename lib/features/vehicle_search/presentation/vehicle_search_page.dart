@@ -196,7 +196,7 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
                                  caption: 'Hello',
                                  controller: _fromController,
                                  hint: 'Search by id',
-                                 label: 'From',
+                                 label: 'Date',
                                  onChange: (value){},
                                  onTap: ()async{
                                    try {

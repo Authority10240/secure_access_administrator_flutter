@@ -184,7 +184,7 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                                caption: 'Hello',
                                controller: fromController,
                                hint: 'Search by id',
-                               label: 'From',
+                               label: 'Date',
                                onChange: (value){},
                            onTap: ()async{
                               from = await showDatePicker(context: context,
@@ -210,9 +210,6 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
 
                               )));
                            },),
-
-
-
                            QueryWidget(
                                caption: 'Hello',
                                controller: unitController,
