@@ -24,7 +24,7 @@ class QueryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
-    width: 400,
+    width: 300,
     child: Column(
       children: [
         Text(label),
@@ -34,7 +34,7 @@ class QueryWidget extends StatelessWidget {
             child: Icon(Icons.clear, size: 20,),
           ):null,
           onTap:()=> onTap(),
-          width: 400,
+          width: MediaQuery.sizeOf(context).width /8,
           onChanged: (value)=> onChange(value),
           controller: controller, labelText: label,
         )

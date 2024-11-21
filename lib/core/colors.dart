@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColorScheme{
-  static Color primary = Colors.blue;
+  static Color primary = Color.fromRGBO(96, 170, 69, 1);
   static Color primaryOp = Colors.blueAccent;
   static Color student = const Color.fromRGBO(131, 45, 136, 1);
   static Color studentOp = const Color.fromRGBO(131, 45, 136, 0.3);
@@ -18,4 +18,5 @@ class AppColorScheme{
   static Color notificationTextColor = const Color(0xFF971D20);
   static Color notificationColor = const Color(0xFFFDE2E2);
   static Color descriptionColor = const Color(0xFF949494);
+  static Color backgroundColor = const Color.fromRGBO(115, 114, 114, 0.3);
 }

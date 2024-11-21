@@ -96,7 +96,7 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
                          child: Container(
                            padding:  EdgeInsets.all( 20),
                            height:state.carDrawerOpen??false? 150:70,
-                           width: MediaQuery.sizeOf(context).width,
+                           width: MediaQuery.sizeOf(context).width ,
                            child: state.carDrawerOpen??false?Row(
                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                              children: [
@@ -156,7 +156,7 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
                            ): SizedBox(
                              child: Center(child: Column(
                                children: [
-                                 Text(appLocalizations.vehicle,style: TextStyle(color: AppColorScheme.primary,
+                                 Text(appLocalizations.VehicleDetails,style: TextStyle(color: AppColorScheme.primary,
                                      fontSize: 20),),
                                ],
                              ),),
@@ -315,7 +315,7 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
                                              child: Icon(
 
                                                Icons.directions_walk,
-                                               color: Colors.blue,),
+                                               color: AppColorScheme.primary),
                                              onTap: (){
 
                                                  getBloc().add(VehicleSearchLoadVisitationEvent(dashboardPageLoadVisitationsVehicleModel: visitation!));

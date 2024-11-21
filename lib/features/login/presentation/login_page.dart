@@ -6,6 +6,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:secure_access_administrator/core/base_classes/base_state.dart';
 import 'package:secure_access_administrator/core/colors.dart';
+import 'package:secure_access_administrator/core/constants/images.dart';
 import 'package:secure_access_administrator/core/hive_storage.dart';
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
@@ -83,10 +84,13 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
                      smallMediumSpacer,
                      Center(child: Text(appLocalizations.welcomeTo, style: textStyleSubHeading(),)),
                      smallSpacer,
-                     Center(child: Text(appLocalizations.appName, style: textStyleTitle(),)),
-                     largeSpacer,
-                     largeSpacer,
-                     largeSpacer,
+                     Center(child:
+                     SizedBox(
+                       height: 150,
+                       child: Image.asset(AppAssets.logoImage),
+                     ),
+                     ),
+                     labelSpacer,
                      Center(child: Text(appLocalizations.signInUsing, style:  textStyleDirectives(),)),
                      smallMediumSpacer,
                      CustomTextField(
@@ -127,17 +131,7 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
                          },
                          buttonText: getLocalization().signIn),
                      smallSpacer,
-                     Row(
-                         children: [
-                           const Spacer(),
-                           Text(
-                             AppLocalizations.of(context).dontHaveAnAccount,
-                             style: textStyleDescription(),),
 
-                           const Spacer(),
-
-                         ]
-                     ),
 
                      ]
                  ),

@@ -239,7 +239,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                                                       visitation?.transportationType == TransportationType.driveIn.toString()?
                                                       Icons.car_crash_sharp :
                                                       Icons.directions_walk_outlined,
-                                                      color: Colors.blue,),
+                                                      color: AppColorScheme.primary,),
                                                     onTap: (){
                                                       if(visitation?.transportationType == TransportationType.driveIn.toString()) {
                                                         getBloc().add(DashBoardPageLoadVisitationVehicleEvent(

@@ -54,6 +54,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc_side_effect: ^0.0.2
   graphic: ^2.5.0
+  icons_launcher: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
 
 flutter_intl:
   enabled: true
@@ -77,3 +79,11 @@ flutter_intl:
   main_local: en
   arb_dir: lib/localization
   output_dir: lib/generated
+
+icons_launcher:
+  image_path: 'assets/secure_access_logo.png'
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true

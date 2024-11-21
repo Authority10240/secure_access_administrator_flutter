@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "VehicleDetails":
+            MessageLookupByLibrary.simpleMessage("Vehicle Details"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appName": MessageLookupByLibrary.simpleMessage(
             "Secure Access Administrator "),
@@ -94,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "model": MessageLookupByLibrary.simpleMessage("Model"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
-        "name": MessageLookupByLibrary.simpleMessage("Name *"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password "),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noIdentificationDocumentScanned": MessageLookupByLibrary.simpleMessage(
@@ -159,7 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sign in using email address"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit "),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
-        "surname": MessageLookupByLibrary.simpleMessage("Surname *"),
+        "surname": MessageLookupByLibrary.simpleMessage("Surname"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "testMe": MessageLookupByLibrary.simpleMessage("Test me"),

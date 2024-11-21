@@ -27,8 +27,8 @@
   "pleaseReenterAPassword": "Please re-enter a password",
   "passwordsDoNotMatch": "Passwords do not match",
   "wcontinue": "Continue",
-  "name": "Name *",
-  "surname": "Surname *",
+  "name": "Name",
+  "surname": "Surname",
   "error": "Error",
   "next": "Next",
   "personalDetails": "Personal details",
@@ -113,7 +113,8 @@
   "dateSearch": "Date Search",
   "doubleTapToOpenClose": "Double tap to open/close",
   "the": "The",
-  "wasDrivenBy": " was driven by:"
+  "wasDrivenBy": " was driven by:",
+  "VehicleDetails": "Vehicle Details"
 
 
 

@@ -312,20 +312,20 @@ class AppLocalizations {
     );
   }
 
-  /// `Name *`
+  /// `Name`
   String get name {
     return Intl.message(
-      'Name *',
+      'Name',
       name: 'name',
       desc: '',
       args: [],
     );
   }
 
-  /// `Surname *`
+  /// `Surname`
   String get surname {
     return Intl.message(
-      'Surname *',
+      'Surname',
       name: 'surname',
       desc: '',
       args: [],
@@ -1177,6 +1177,16 @@ class AppLocalizations {
     return Intl.message(
       ' was driven by:',
       name: 'wasDrivenBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle Details`
+  String get VehicleDetails {
+    return Intl.message(
+      'Vehicle Details',
+      name: 'VehicleDetails',
       desc: '',
       args: [],
     );
