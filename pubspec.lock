@@ -1165,6 +1165,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.28.0"
+  secure_access_repository:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "6da0f92a262aa3647dc3611f6e5dcd2c19c9b3ba"
+      url: "https://github.com/Authority10240/secure_access-repository.git"
+    source: git
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:

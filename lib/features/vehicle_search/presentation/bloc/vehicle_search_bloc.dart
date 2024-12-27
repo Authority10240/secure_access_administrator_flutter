@@ -7,11 +7,11 @@ import 'package:secure_access_administrator/core/base_classes/base_bloc.dart';
 import 'package:secure_access_administrator/core/base_classes/base_event.dart';
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/base_classes/base_state.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/vehicle_search/domain/use_cases/vehicle_search_usecase/vehicle_search_load-visitation_usecase.dart';
 import 'package:secure_access_administrator/features/vehicle_search/domain/use_cases/vehicle_search_usecase/vehicle_search_value_changed_usecase.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/bloc/vehicle_search_side_effect.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/modal/vehicle_search_criteria.dart';
+import 'package:secure_access_repository/models/secure_access_visitations_vehicle_model/secure_access_visitations_vehicle_model.dart';
 
 
 part 'vehicle_search_event.dart';

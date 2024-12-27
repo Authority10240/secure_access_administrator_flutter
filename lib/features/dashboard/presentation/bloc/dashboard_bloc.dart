@@ -10,10 +10,10 @@ import 'package:meta/meta.dart';
 import 'package:secure_access_administrator/core/extensions/date_extension.dart';
 import 'package:intl/intl.dart';
 import 'package:secure_access_administrator/core/failures/runtime_exception.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/domain/use_cases/dashboard_usecase/dashboard_get_visitations_usecase.dart';
 import 'package:secure_access_administrator/features/dashboard/domain/use_cases/dashboard_usecase/dashboard_page_load_visitation_vehicle_usecase.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 
 part 'dashboard_event.dart';
@@ -53,14 +53,14 @@ class DashboardBloc
     final DashboardGetVisitationsUseCase getCalenderDateVisitations;
     final DashboardPageLoadVisitationVehicleUseCase dashboardPageLoadVisitationVehicleUseCase;
 
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? todaysVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? yesterdaysVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? twoDaysBackVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? threeDaysBackVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fourDaysBackVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fiveDaysBackVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? sixDaysBackVisitations;
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? calenderDayVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? todaysVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? yesterdaysVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? twoDaysBackVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? threeDaysBackVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? fourDaysBackVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? fiveDaysBackVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? sixDaysBackVisitations;
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? calenderDayVisitations;
 
     DateTime currentDate = DateTime.now();
     DateTime currentDate2 = DateTime.now();

@@ -3,12 +3,11 @@ import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/custom_form_button.dart';
 import 'package:get/get.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 void vehicleDescriptionDialog({
-  required DashboardPageLoadVisitationsVehicleModel vehicle,
-  required DashboardGetVisitationsModel visitation,
+  required SecureAccessVisitationsVehicleModel vehicle,
+  required SecureAccessVisitationsModel visitation,
   required AppLocalizations appLocalizations}){
 
   Get.dialog(
@@ -42,7 +41,7 @@ void vehicleDescriptionDialog({
                       smallMediumSpacer,
                       Text(appLocalizations.id, style:  textStyleDirectives(),),
                       labelSpacer,
-                      Text(visitation.identificationNumber??'', style:  textStyleDescription(),),
+                      Text(visitation.identificationsNumber??'', style:  textStyleDescription(),),
 
                       smallMediumSpacer,
                       Text(appLocalizations.mobileNumber, style:  textStyleDirectives(),),

@@ -1,6 +1,6 @@
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
+import 'package:secure_access_repository/models/secure_access_visitation_model/secure_access_visitations_model.dart';
+import 'package:secure_access_repository/models/secure_access_visitations_vehicle_model/secure_access_visitations_vehicle_model.dart';
 
 sealed class DashboardPageSideEffect extends BaseSideEffects{
 
@@ -15,6 +15,6 @@ class DashBoardPageLoadVisitationVehicleSideEffect extends DashboardPageSideEffe
     this.dashboardPageLoadVisitationsVehicleModel,
     this.dashboardGetVisitationsModel });
 
-  final DashboardPageLoadVisitationsVehicleModel? dashboardPageLoadVisitationsVehicleModel;
-  final DashboardGetVisitationsModel? dashboardGetVisitationsModel;
+  final SecureAccessVisitationsVehicleModel? dashboardPageLoadVisitationsVehicleModel;
+  final SecureAccessVisitationsModel? dashboardGetVisitationsModel;
 }

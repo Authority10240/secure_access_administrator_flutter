@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:secure_access_administrator/core/base_classes/base_usecase.dart';
 import 'package:secure_access_administrator/core/failures/base_failure.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/vehicle_search/domain/repository/vehicle_search_repository/vehicle_search_value_changed_repository.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/modal/vehicle_search_criteria.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 @Injectable()
-class VehicleSearchValueChangedUseCase extends BaseUseCase<VehicleSearchValueChangedUseCaseParams, Stream<QuerySnapshot<DashboardPageLoadVisitationsVehicleModel>>>{
+class VehicleSearchValueChangedUseCase extends BaseUseCase<VehicleSearchValueChangedUseCaseParams, Stream<QuerySnapshot<SecureAccessVisitationsVehicleModel>>>{
 
   final VehicleSearchValueChangedRepository vehicleSearchValueChangedRepository;
 
@@ -15,7 +15,7 @@ class VehicleSearchValueChangedUseCase extends BaseUseCase<VehicleSearchValueCha
 
   @override
   Future<void> call({
-    required Function(Stream<QuerySnapshot<DashboardPageLoadVisitationsVehicleModel>>? model)? onSuccess,
+    required Function(Stream<QuerySnapshot<SecureAccessVisitationsVehicleModel>>? model)? onSuccess,
     required Function(BaseFailure? error)? onError,
     VehicleSearchValueChangedUseCaseParams? params}) async{
 

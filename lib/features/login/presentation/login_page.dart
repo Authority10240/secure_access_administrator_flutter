@@ -87,7 +87,7 @@ class _LoginPageState extends BasePageState<LoginPage, LoginBloc> {
                      Center(child:
                      SizedBox(
                        height: 150,
-                       child: Image.asset(AppAssets.logoImage),
+                       child: Image.asset(AppAssets.logoImageJpeg),
                      ),
                      ),
                      labelSpacer,

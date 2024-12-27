@@ -1,7 +1,7 @@
 import 'package:secure_access_administrator/core/base_classes/base_repository.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
-abstract class DashboardPageLoadVisitationVehicleRepository  extends BaseRepository<DashboardPageLoadVisitationVehicleRepositoryParams, DashboardPageLoadVisitationsVehicleModel>{}
+abstract class DashboardPageLoadVisitationVehicleRepository  extends BaseRepository<DashboardPageLoadVisitationVehicleRepositoryParams, SecureAccessVisitationsVehicleModel>{}
 
 class DashboardPageLoadVisitationVehicleRepositoryParams extends BaseRepositoryParams{
 

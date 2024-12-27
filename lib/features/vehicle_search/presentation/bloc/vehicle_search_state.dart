@@ -3,7 +3,7 @@ part of 'vehicle_search_bloc.dart';
 abstract class VehicleSearchPageState extends BaseState {
 
   VehicleSearchPageState({super.errorCode, super.errorMessage,this.dateDrawerOpen, this.carDrawerOpen, this.visitations});
-  Stream<QuerySnapshot<DashboardPageLoadVisitationsVehicleModel?>>? visitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsVehicleModel?>>? visitations;
   bool? carDrawerOpen ;
   bool? dateDrawerOpen ;
 }

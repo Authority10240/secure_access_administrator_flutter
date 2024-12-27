@@ -15,13 +15,13 @@ import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/car_description_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/dashboard_vistation_summary_widget.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/visitation_search_page.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 import 'package:get/get.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 import 'bloc/dashboard_bloc.dart';
 
 const double height34 = 34;
@@ -220,14 +220,14 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                                 children: [
                                   Text('${getBloc().currentDate2.toString().toFormattedDate()} ${appLocalizations.visitations}',
                                     style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
-                                  StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
+                                  StreamBuilder<QuerySnapshot<SecureAccessVisitationsModel?>>(
                                       stream: state.calenderDayVisitations,
                                       builder: (context, snapshot){
-                                        List<QueryDocumentSnapshot<DashboardGetVisitationsModel?>>? data = snapshot.data?.docs??[];
+                                        List<QueryDocumentSnapshot<SecureAccessVisitationsModel?>>? data = snapshot.data?.docs??[];
                                         return Expanded(child: ListView.builder(
                                             itemCount: snapshot.data?.docs.length??0,
                                             itemBuilder: (context, index){
-                                              DashboardGetVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
+                                              SecureAccessVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
                                               String? visitationId  = snapshot.data?.docs.elementAt(index).id;
                                               return Card(elevation: 11,child: Container( child: ListTile(
                                                   leading: Text("Unit: ${visitation?.unit??""}",style: textStyleSubHeading(),),

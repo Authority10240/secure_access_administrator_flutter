@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:secure_access_administrator/core/colors.dart';
 import 'package:secure_access_administrator/core/extensions/num_extension.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/dashboard_page.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 class DashboardVisitationSummaryWidget extends StatefulWidget {
    DashboardVisitationSummaryWidget({
@@ -14,7 +13,7 @@ class DashboardVisitationSummaryWidget extends StatefulWidget {
      required this.heading,
      required this.date,required this.stream, super.key});
 
-   Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? stream;
+   Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? stream;
    final String date;
    final String heading;
    final String buttonCaption;
@@ -27,7 +26,7 @@ class DashboardVisitationSummaryWidget extends StatefulWidget {
 class _DashboardVisitationSummaryWidgetState extends State<DashboardVisitationSummaryWidget> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
+    return StreamBuilder<QuerySnapshot<SecureAccessVisitationsModel?>>(
       stream: widget.stream ,
       builder: (context, snapshot){
         

@@ -10,7 +10,6 @@ import 'package:secure_access_administrator/core/extensions/date_extension.dart'
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/dashboard_page.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/vehicle_search_page.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/bloc/visitation_search_bloc.dart';
@@ -18,6 +17,7 @@ import 'package:secure_access_administrator/features/visitation_search/presentat
 import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/car_description_widget.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/query_widget.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 
 class VisitationSearchPage extends BasePage {
@@ -244,15 +244,15 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                    elevation: 11,
                     child: Column(
                      children: [
-                       StreamBuilder<QuerySnapshot<DashboardGetVisitationsModel?>>(
+                       StreamBuilder<QuerySnapshot<SecureAccessVisitationsModel?>>(
                            stream: state.visitations,
                            builder: (context, snapshot){
-                             List<QueryDocumentSnapshot<DashboardGetVisitationsModel?>>? data = snapshot.data?.docs??[];
+                             List<QueryDocumentSnapshot<SecureAccessVisitationsModel?>>? data = snapshot.data?.docs??[];
                              return Expanded(child:
                              ListView.builder(
                                  itemCount: snapshot.data?.docs.length??0,
                                  itemBuilder: (context, index){
-                                   DashboardGetVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
+                                   SecureAccessVisitationsModel? visitation = snapshot.data?.docs.elementAt(index).data();
                                    String? visitationId  = snapshot.data?.docs.elementAt(index).id;
                                    return Padding(padding: EdgeInsets.symmetric(horizontal: 20),child: Card(
                                      elevation: 11,

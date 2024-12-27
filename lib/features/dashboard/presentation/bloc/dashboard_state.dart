@@ -12,14 +12,14 @@ sealed  class DashboardPageState extends BaseState {
     this.calenderDayVisitations,
     this.todaysVisitations, super.errorCode, super.errorMessage});
 
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? todaysVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? yesterdaysVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? twoDaysBackVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? threeDaysBackVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fourDaysBackVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? fiveDaysBackVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? sixDaysBackVisitations;
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? calenderDayVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? todaysVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? yesterdaysVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? twoDaysBackVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? threeDaysBackVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? fourDaysBackVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? fiveDaysBackVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? sixDaysBackVisitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? calenderDayVisitations;
 }
 
 class DashboardPageInitState extends DashboardPageState {}

@@ -4,7 +4,7 @@ abstract class VisitationSearchPageState extends BaseState {
 
   VisitationSearchPageState({super.errorCode, super.errorMessage,this.visitations,this.personnelDrawerOpen, this.dateDrawerOpen, this.carDrawerOpen});
 
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>>? visitations;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>>? visitations;
   bool? personnelDrawerOpen ;
   bool? carDrawerOpen ;
   bool? dateDrawerOpen ;

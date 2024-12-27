@@ -24,6 +24,6 @@ class VehicleSearchLoadVisitationEvent extends VehicleSearchPageEvent{
 
   VehicleSearchLoadVisitationEvent({required this.dashboardPageLoadVisitationsVehicleModel});
 
-final DashboardPageLoadVisitationsVehicleModel dashboardPageLoadVisitationsVehicleModel;
+final SecureAccessVisitationsVehicleModel dashboardPageLoadVisitationsVehicleModel;
 
 }

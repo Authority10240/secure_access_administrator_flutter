@@ -10,6 +10,6 @@ class VisitationSearchLoadVehicleSideEffect extends VisitationSearchSideEffect{
     this.dashboardGetVisitationsModel,
     this.dashboardPageLoadVisitationsVehicleModel,super.errorCode, super.errorMessage});
 
-  final DashboardPageLoadVisitationsVehicleModel? dashboardPageLoadVisitationsVehicleModel;
-  final DashboardGetVisitationsModel? dashboardGetVisitationsModel;
+  final SecureAccessVisitationsVehicleModel? dashboardPageLoadVisitationsVehicleModel;
+  final SecureAccessVisitationsModel? dashboardGetVisitationsModel;
 }

@@ -21,7 +21,7 @@ class VisitationSearchLoadVisitationEvent extends VisitationSearchPageEvent{
 }
 
 class VisitationSearchLoadVehicleEvent extends VisitationSearchPageEvent{
-   final DashboardGetVisitationsModel dashboardGetVisitationsModel;
+   final SecureAccessVisitationsModel dashboardGetVisitationsModel;
    final String visitationId;
 
    VisitationSearchLoadVehicleEvent({

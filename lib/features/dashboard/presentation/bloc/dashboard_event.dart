@@ -36,7 +36,7 @@ class DashBoardPageLoadVisitationVehicleEvent extends DashboardPageEvent{
   DashBoardPageLoadVisitationVehicleEvent({required this.dashboardGetVisitationsModel,required this.visitationId});
 
   final String visitationId;
-  final DashboardGetVisitationsModel dashboardGetVisitationsModel;
+  final SecureAccessVisitationsModel dashboardGetVisitationsModel;
 }
 
 

@@ -9,7 +9,6 @@ import 'package:secure_access_administrator/core/extensions/date_extension.dart'
 import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/bloc/vehicle_search_side_effect.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/modal/vehicle_search_criteria.dart';
 import 'package:secure_access_administrator/features/vehicle_search/presentation/widgets/visitation_description_widget.dart';
@@ -17,6 +16,7 @@ import 'package:secure_access_administrator/features/visitation_search/presentat
 import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/widgets/query_widget.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
+import 'package:secure_access_repository/models/secure_access_visitations_vehicle_model/secure_access_visitations_vehicle_model.dart';
 import 'bloc/vehicle_search_bloc.dart';
 
 
@@ -292,15 +292,15 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
                    elevation: 11,
                    child: Column(
                      children: [
-                       StreamBuilder<QuerySnapshot<DashboardPageLoadVisitationsVehicleModel?>>(
+                       StreamBuilder<QuerySnapshot<SecureAccessVisitationsVehicleModel?>>(
                            stream: state.visitations,
                            builder: (context, snapshot){
-                             List<QueryDocumentSnapshot<DashboardPageLoadVisitationsVehicleModel?>>? data = snapshot.data?.docs??[];
+                             List<QueryDocumentSnapshot<SecureAccessVisitationsVehicleModel?>>? data = snapshot.data?.docs??[];
                              return Expanded(child:
                              ListView.builder(
                                  itemCount: snapshot.data?.docs.length??0,
                                  itemBuilder: (context, index){
-                                   DashboardPageLoadVisitationsVehicleModel? visitation = snapshot.data?.docs.elementAt(index).data();
+                                   SecureAccessVisitationsVehicleModel? visitation = snapshot.data?.docs.elementAt(index).data();
                                    String? visitationId  = snapshot.data?.docs.elementAt(index).id;
                                    return Padding(padding: EdgeInsets.symmetric(horizontal: 20),child: Card(
                                      elevation: 11,

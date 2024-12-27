@@ -2,11 +2,11 @@
 import 'package:injectable/injectable.dart';
 import 'package:secure_access_administrator/core/base_classes/base_usecase.dart';
 import 'package:secure_access_administrator/core/failures/base_failure.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
 import 'package:secure_access_administrator/features/vehicle_search/domain/repository/vehicle_search_repository/vehicle_search_load_visitation_repository.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 @Injectable()
-class VehicleSearchLoadVisitationUseCase extends BaseUseCase<VehicleSearchLoadVisitationUseCaseParams, DashboardGetVisitationsModel>{
+class VehicleSearchLoadVisitationUseCase extends BaseUseCase<VehicleSearchLoadVisitationUseCaseParams, SecureAccessVisitationsModel>{
 
   final VehicleSearchLoadVisitationRepository vehicleSearchLoadVisitationRepository;
 
@@ -14,7 +14,7 @@ class VehicleSearchLoadVisitationUseCase extends BaseUseCase<VehicleSearchLoadVi
 
   @override
   Future<void> call({
-    required Function(DashboardGetVisitationsModel? model)? onSuccess,
+    required Function(SecureAccessVisitationsModel? model)? onSuccess,
     required Function(BaseFailure? error)? onError,
     VehicleSearchLoadVisitationUseCaseParams? params})async {
     await vehicleSearchLoadVisitationRepository.call(onSuccess: (model)=> onSuccess!(model),

@@ -2,19 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:secure_access_administrator/core/constants/database.dart';
 import 'package:secure_access_administrator/core/extensions/date_extension.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/visitation_search/data/data_source/remote/visitation_search_remote_data_source.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/modal/visitation_search_criteria.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 @Singleton(as: VisitationSearchRemoteDataSource)
 class VisitationSearchRemotedataSourceImple extends VisitationSearchRemoteDataSource{
   @override
-  Stream<QuerySnapshot<DashboardGetVisitationsModel?>> visitationSearchValueChanged({required VisitationSearchCriteria visitationSearchCriteria}) {
-    CollectionReference<DashboardGetVisitationsModel> _visitationsRef;
+  Stream<QuerySnapshot<SecureAccessVisitationsModel?>> visitationSearchValueChanged({required VisitationSearchCriteria visitationSearchCriteria}) {
+    CollectionReference<SecureAccessVisitationsModel> _visitationsRef;
     _visitationsRef = FirebaseFirestore.instance.collection(visitation_reference)
-        .withConverter<DashboardGetVisitationsModel>(
-        fromFirestore: (snapShot,_)=> DashboardGetVisitationsModel.fromJson(snapShot.data()!),
+        .withConverter<SecureAccessVisitationsModel>(
+        fromFirestore: (snapShot,_)=> SecureAccessVisitationsModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());
 
 DateTime? from;
@@ -30,7 +29,7 @@ if(visitationSearchCriteria.from!= null){
     if(visitationSearchCriteria.to != null)
        to = DateTime(visitationSearchCriteria.to!.year, visitationSearchCriteria.to!.month, visitationSearchCriteria.to!.day);
 
-    Stream<QuerySnapshot<DashboardGetVisitationsModel?>> list = _visitationsRef
+    Stream<QuerySnapshot<SecureAccessVisitationsModel?>> list = _visitationsRef
         .where('firstName',isEqualTo: visitationSearchCriteria.name)
         .where('lastName',isEqualTo: visitationSearchCriteria.surname)
         .where('unit', isEqualTo: visitationSearchCriteria.unit)
@@ -41,17 +40,17 @@ if(visitationSearchCriteria.from!= null){
   }
 
   @override
-  Future<DashboardPageLoadVisitationsVehicleModel> visitationSearchLoadVehicle({required String visitationId, required String date})async {
-    CollectionReference<DashboardPageLoadVisitationsVehicleModel> _vehicleRef =  FirebaseFirestore.instance.
+  Future<SecureAccessVisitationsVehicleModel> visitationSearchLoadVehicle({required String visitationId, required String date})async {
+    CollectionReference<SecureAccessVisitationsVehicleModel> _vehicleRef =  FirebaseFirestore.instance.
     collection(visitation_vehicle_details).
     withConverter(
-        fromFirestore: (snapShot,_)=> DashboardPageLoadVisitationsVehicleModel.fromJson(snapShot.data()!),
+        fromFirestore: (snapShot,_)=> SecureAccessVisitationsVehicleModel.fromJson(snapShot.data()!),
         toFirestore:(dashboardPageLoadVisitationsVehicleModel, _ )=> dashboardPageLoadVisitationsVehicleModel.toJson());
 
-    QuerySnapshot<DashboardPageLoadVisitationsVehicleModel> queryVehicle = await _vehicleRef.
+    QuerySnapshot<SecureAccessVisitationsVehicleModel> queryVehicle = await _vehicleRef.
     where('identificationNumber',isEqualTo: visitationId).
     where('date', isEqualTo: date).snapshots().first;
-    List<QueryDocumentSnapshot<DashboardPageLoadVisitationsVehicleModel>> queryDocumentVehicle = queryVehicle.docs;
+    List<QueryDocumentSnapshot<SecureAccessVisitationsVehicleModel>> queryDocumentVehicle = queryVehicle.docs;
 
     return queryDocumentVehicle.first.data();
   }

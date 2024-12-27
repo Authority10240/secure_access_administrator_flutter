@@ -6,11 +6,10 @@ import 'package:secure_access_administrator/core/base_classes/base_side_effects.
 import 'package:secure_access_administrator/core/base_classes/base_state.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_get_visitations_model.dart';
-import 'package:secure_access_administrator/features/dashboard/data/models/dashboard_model_response/dashboard_page_load_visitations_vehicle_model.dart';
 import 'package:secure_access_administrator/features/visitation_search/domain/use_cases/visitation_search_usecase/visitation_search_load_vehicle_usecase.dart';
 import 'package:secure_access_administrator/features/visitation_search/domain/use_cases/visitation_search_usecase/visitation_search_value_changed_usecase.dart';
 import 'package:secure_access_administrator/features/visitation_search/presentation/modal/visitation_search_criteria.dart';
+import 'package:secure_access_repository/models/repository_models.dart';
 
 part 'visitation_search_event.dart';
 part 'visitation_search_state.dart';
