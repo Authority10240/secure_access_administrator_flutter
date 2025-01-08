@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc_side_effect/flutter_bloc_side_effect.dart';
 import 'package:get/get.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:flutter/material.dart';
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
@@ -43,9 +44,15 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
 
   }
 
-    @override
+  @override
   PreferredSizeWidget? buildAppbar() {
-    return null;
+    return AppBar(
+      leading: InkWell(child:  HeroIcon(HeroIcons.chevronLeft, color: AppColorScheme.primary,),
+        onTap: ()=> Get.back(),),
+      backgroundColor: Colors.white,
+
+    );
+
   }
 
   TextEditingController idController = TextEditingController();
@@ -223,7 +230,6 @@ class _VisitationSearchPageState extends BasePageState<VisitationSearchPage, Vis
                                to: to,
                                from: from,
                              unit: unitController.text.isNotEmpty? unitController.text:null
-
                            ))),),
 
                          ],

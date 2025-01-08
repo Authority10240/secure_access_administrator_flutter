@@ -20,12 +20,13 @@ class SecureAccessAdministratorApp{
 
   static  void run(){
     return runApp(
-        const GetMaterialApp(
-          localizationsDelegates:  [
+        GetMaterialApp(
+          localizationsDelegates:  const [
             AppLocalizations.delegate,
           ],
           supportedLocales:  AppSupportedLocals.appSupportedLocals,
-          home: LoginPage(),
+          home: const LoginPage(),
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         )
     );
   }

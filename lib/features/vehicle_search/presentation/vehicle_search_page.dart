@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:secure_access_administrator/core/base_classes/base_side_effects.dart';
 import 'package:secure_access_administrator/core/colors.dart';
@@ -51,9 +52,15 @@ class _VehicleSearchPageState extends BasePageState<VehicleSearchPage, VehicleSe
   DateTime? from;
 
 
-    @override
+  @override
   PreferredSizeWidget? buildAppbar() {
-    return null;
+    return AppBar(
+      leading: InkWell(child:  HeroIcon(HeroIcons.chevronLeft, color: AppColorScheme.primary,),
+        onTap: ()=> Get.back(),),
+      backgroundColor: Colors.white,
+
+    );
+
   }
 
   @override

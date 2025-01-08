@@ -15,6 +15,7 @@ import 'package:secure_access_administrator/core/locator.dart';
 import 'package:secure_access_administrator/core/sizes.dart';
 import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
+import 'package:secure_access_administrator/features/burger_menu/presentation/burger_menu_page.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/bloc/dashboard_side_effects.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/car_description_widget.dart';
 import 'package:secure_access_administrator/features/dashboard/presentation/widgets/dashboard_vistation_summary_widget.dart';
@@ -57,7 +58,15 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
 
     @override
   PreferredSizeWidget? buildAppbar() {
-    return null;
+    return AppBar(
+      backgroundColor: Colors.white,
+actions: [ InkWell(child: HeroIcon(
+      HeroIcons.bars4,
+      color: AppColorScheme.primary,),
+      onTap: ()=> Get.to(const BurgerMenuPage()),),
+      const SizedBox(width: 25,)],
+    );
+
   }
 
   @override
@@ -78,7 +87,6 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                 appLocalizations: appLocalizations,
                 vehicle: effect.dashboardPageLoadVisitationsVehicleModel!,
                 visitation: effect.dashboardGetVisitationsModel!
-
             );
           }
         }
@@ -108,15 +116,16 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
        return
             SingleChildScrollView(
               child: Padding(
-                padding:  EdgeInsets.all(borderRadius),
+                padding:  EdgeInsets.only(left: borderRadius, right: borderRadius),
                 child:  Padding(
-                  padding:  EdgeInsets.all(pagePadding),
+                  padding:  EdgeInsets.zero,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(color: Colors.white,height: 200,
                            child:
                         ListView(
+                          padding: EdgeInsets.zero,
                           scrollDirection: Axis.horizontal,
                           children: [
                             DashboardVisitationSummaryWidget(
@@ -126,37 +135,37 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                               stream: state.todaysVisitations,
                               date: appLocalizations.today,),
                             DashboardVisitationSummaryWidget(
-                              onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 1)) , from: DateTime.now().subtract(Duration(days: 1)),)),
+                              onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 1)) , from: DateTime.now().subtract(const Duration(days: 1)),)),
                               buttonCaption: appLocalizations.more,
                               heading: appLocalizations.visitations,
                               stream: state.yesterdaysVisitations,
                               date: appLocalizations.yesterday,),
                             DashboardVisitationSummaryWidget(
-                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 2)) , from: DateTime.now().subtract(Duration(days: 2)),)),
+                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 2)) , from: DateTime.now().subtract(const Duration(days: 2)),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.twoDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 2)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
-                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 3)) , from: DateTime.now().subtract(Duration(days: 3)),)),
+                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 3)) , from: DateTime.now().subtract(const Duration(days: 3)),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.threeDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 3)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
-                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 4)) , from: DateTime.now().subtract(Duration(days: 4)),)),
+                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 4)) , from: DateTime.now().subtract(const Duration(days: 4)),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.fourDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 4)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
-                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 5)) , from: DateTime.now().subtract(Duration(days: 5)),)),
+                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 5)) , from: DateTime.now().subtract(const Duration(days: 5)),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.fiveDaysBackVisitations,
                                 date: DateTime.now().subtract(const Duration(days: 5)).toString().toFormattedDate()),
                             DashboardVisitationSummaryWidget(
-                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(Duration(days: 6)) , from: DateTime.now().subtract(Duration(days: 6)),)),
+                                onTap: ()=> Get.to(VisitationSearchPage(to: DateTime.now().subtract(const Duration(days: 6)) , from: DateTime.now().subtract(const Duration(days: 6)),)),
                                 buttonCaption: appLocalizations.more,
                                 heading: appLocalizations.visitations,
                                 stream: state.sixDaysBackVisitations,
@@ -216,7 +225,7 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                             ),
                             Expanded(child: Card(
                               elevation: 11,
-                              child: Padding(padding: EdgeInsets.all(20), child: Column(
+                              child: Padding(padding: const EdgeInsets.all(20), child: Column(
                                 children: [
                                   Text('${getBloc().currentDate2.toString().toFormattedDate()} ${appLocalizations.visitations}',
                                     style: TextStyle(color: AppColorScheme.primary, fontSize: 28),),
@@ -258,8 +267,6 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
                           )
                         ,)
                           ,)
-
-
                       ]
                   ),
                 ),
@@ -287,6 +294,12 @@ class _DashboardPageState extends BasePageState<DashboardPage, DashboardBloc> {
         HeroIcons.arrowsRightLeft,
         color: Colors.white,) ,);
   }
+
+  @override
+  Color scaffoldBackgroundColor() {
+    return Theme.of(context).scaffoldBackgroundColor;
+  }
+
 
 
 

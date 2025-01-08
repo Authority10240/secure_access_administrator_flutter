@@ -13,6 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../features/burger_menu/presentation/bloc/burger_menu_bloc.dart'
+    as _i850;
 import '../features/dashboard/data/data_source/remote/dashboard_service.dart'
     as _i274;
 import '../features/dashboard/data/data_source/remote/dashboard_service_impl.dart'
@@ -45,6 +47,9 @@ import '../features/login/domain/repository/login_repository/sign_in_clicked_rep
 import '../features/login/domain/use_cases/login_usecase/sign_in_clicked_usecase.dart'
     as _i845;
 import '../features/login/presentation/bloc/login_bloc.dart' as _i1022;
+import '../features/properties/presentation/bloc/properties_bloc.dart' as _i304;
+import '../features/property_access/presentation/bloc/property_access_bloc.dart'
+    as _i796;
 import '../features/vehicle_search/data/data_source/remote/vehicle_search_data_source.dart'
     as _i74;
 import '../features/vehicle_search/data/data_source/remote/vehicle_search_data_source_impl.dart'
@@ -99,6 +104,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i361.Dio>(() => registerModules.dio);
     gh.factory<_i504.AppLocalizations>(() => registerModules.appLocalizations);
     gh.factory<_i59.FirebaseAuth>(() => registerModules.firebaseAuth);
+    gh.factory<_i850.BurgerMenuBloc>(() => _i850.BurgerMenuBloc());
+    gh.factory<_i304.PropertiesBloc>(() => _i304.PropertiesBloc());
+    gh.factory<_i796.PropertyAccessBloc>(() => _i796.PropertyAccessBloc());
     gh.factory<_i822.BiometricsLocalModel>(
         () => _i822.BiometricsLocalModel(enabled: gh<bool>()));
     gh.factory<_i597.SignInLocalModel>(
