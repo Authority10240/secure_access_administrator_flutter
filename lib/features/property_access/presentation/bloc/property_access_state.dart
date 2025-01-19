@@ -15,13 +15,13 @@ class PropertyAccessGetUnitsState extends PropertyAccessPageState{
 
 }
 
-class PropertyAccessDeleteUnit extends PropertyAccessPageState{
+class PropertyAccessDeleteUnitState extends PropertyAccessPageState{
 
-  PropertyAccessDeleteUnit({required super.residenceUnits, super.errorCode, super.errorMessage});
+  PropertyAccessDeleteUnitState({required super.residenceUnits, super.errorCode, super.errorMessage});
 }
 
-class PropertyAccessAddUnit extends PropertyAccessPageState{
+class PropertyAccessAddUnitState extends PropertyAccessPageState{
 
-  PropertyAccessAddUnit({required super.residenceUnits, super.errorCode, super.errorMessage});
+  PropertyAccessAddUnitState({required super.residenceUnits, super.errorCode, super.errorMessage});
 }
 

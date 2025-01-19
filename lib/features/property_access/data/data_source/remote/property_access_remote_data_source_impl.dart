@@ -11,7 +11,7 @@ class PropertyAccessRemoteDataSourceImpl extends PropertyAccessRemoteDataSource{
   late CollectionReference _unitsRef;
 
   @override
-  Future<bool> propertiesAddUnitButtonClicked({required String blockId, required SecureAccessPropertiesModel model}) async{
+  Future<bool> propertiesAddUnitButtonClicked({required String blockId, required SecureAccessUnitsModel model}) async{
     try {
       _unitsRef =
           FirebaseFirestore.instance.
