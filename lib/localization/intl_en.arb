@@ -114,8 +114,21 @@
   "doubleTapToOpenClose": "Double tap to open/close",
   "the": "The",
   "wasDrivenBy": " was driven by:",
-  "VehicleDetails": "Vehicle Details"
-
+  "VehicleDetails": "Vehicle Details",
+  "residenceBlock" : "Residence Block",
+  "blockNumber": "Block Number",
+  "blockName": "Block Name",
+  "blockSection": "Block Section",
+  "addNewBlock": "Add New Block",
+  "addBlock": "Add Block",
+  "blocks": "Blocks",
+  "blockAddedSuccessful": "Block added successfully",
+  "pleaseEnterAValueBeforeProceeding": "Please enter a value before proceeding",
+  "units": "Units",
+  "addNewUnit": "Add New Unit",
+  "addUnit": "Add New Unit",
+  "unit": "Unit",
+  "section": "Section"
 
 
 

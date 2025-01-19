@@ -1191,6 +1191,146 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Residence Block`
+  String get residenceBlock {
+    return Intl.message(
+      'Residence Block',
+      name: 'residenceBlock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Number`
+  String get blockNumber {
+    return Intl.message(
+      'Block Number',
+      name: 'blockNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Name`
+  String get blockName {
+    return Intl.message(
+      'Block Name',
+      name: 'blockName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Section`
+  String get blockSection {
+    return Intl.message(
+      'Block Section',
+      name: 'blockSection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Block`
+  String get addNewBlock {
+    return Intl.message(
+      'Add New Block',
+      name: 'addNewBlock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Block`
+  String get addBlock {
+    return Intl.message(
+      'Add Block',
+      name: 'addBlock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blocks`
+  String get blocks {
+    return Intl.message(
+      'Blocks',
+      name: 'blocks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block added successfully`
+  String get blockAddedSuccessful {
+    return Intl.message(
+      'Block added successfully',
+      name: 'blockAddedSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a value before proceeding`
+  String get pleaseEnterAValueBeforeProceeding {
+    return Intl.message(
+      'Please enter a value before proceeding',
+      name: 'pleaseEnterAValueBeforeProceeding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Units`
+  String get units {
+    return Intl.message(
+      'Units',
+      name: 'units',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Unit`
+  String get addNewUnit {
+    return Intl.message(
+      'Add New Unit',
+      name: 'addNewUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Unit`
+  String get addUnit {
+    return Intl.message(
+      'Add New Unit',
+      name: 'addUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unit`
+  String get unit {
+    return Intl.message(
+      'Unit',
+      name: 'unit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Section`
+  String get section {
+    return Intl.message(
+      'Section',
+      name: 'section',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

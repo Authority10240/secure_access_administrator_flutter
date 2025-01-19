@@ -47,7 +47,39 @@ import '../features/login/domain/repository/login_repository/sign_in_clicked_rep
 import '../features/login/domain/use_cases/login_usecase/sign_in_clicked_usecase.dart'
     as _i845;
 import '../features/login/presentation/bloc/login_bloc.dart' as _i1022;
+import '../features/properties/data/data_source/properties_remote_data_source.dart'
+    as _i554;
+import '../features/properties/data/data_source/properties_remote_data_source_impl.dart'
+    as _i427;
+import '../features/properties/data/repository_impl/properties_repository_impl/properties_add_block_clicked_repository_impl.dart'
+    as _i498;
+import '../features/properties/data/repository_impl/properties_repository_impl/properties_delete_block_repository_impl.dart'
+    as _i640;
+import '../features/properties/data/repository_impl/properties_repository_impl/properties_get_blocks_repository_impl.dart'
+    as _i375;
+import '../features/properties/domain/repository/properties_repository/properties_add_block_clicked_repository.dart'
+    as _i142;
+import '../features/properties/domain/repository/properties_repository/properties_delete_block_repository.dart'
+    as _i472;
+import '../features/properties/domain/repository/properties_repository/properties_get_blocks_repository.dart'
+    as _i1042;
+import '../features/properties/domain/use_cases/properties_usecase/properties_add_block_clicked_usecase.dart'
+    as _i403;
+import '../features/properties/domain/use_cases/properties_usecase/properties_delete_block_usecase.dart'
+    as _i888;
+import '../features/properties/domain/use_cases/properties_usecase/properties_get_blocks_usecase.dart'
+    as _i790;
 import '../features/properties/presentation/bloc/properties_bloc.dart' as _i304;
+import '../features/property_access/data/data_source/remote/property_access_remote_data_source.dart'
+    as _i329;
+import '../features/property_access/data/data_source/remote/property_access_remote_data_source_impl.dart'
+    as _i696;
+import '../features/property_access/data/repository_impl/property_access_repository_impl/property_access_get_units_repository_impl.dart'
+    as _i262;
+import '../features/property_access/domain/repository/property_access_repository/property_access_get_units_repository.dart'
+    as _i477;
+import '../features/property_access/domain/use_cases/property_access_usecase/property_access_get_units_usecase.dart'
+    as _i892;
 import '../features/property_access/presentation/bloc/property_access_bloc.dart'
     as _i796;
 import '../features/vehicle_search/data/data_source/remote/vehicle_search_data_source.dart'
@@ -105,10 +137,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i504.AppLocalizations>(() => registerModules.appLocalizations);
     gh.factory<_i59.FirebaseAuth>(() => registerModules.firebaseAuth);
     gh.factory<_i850.BurgerMenuBloc>(() => _i850.BurgerMenuBloc());
-    gh.factory<_i304.PropertiesBloc>(() => _i304.PropertiesBloc());
-    gh.factory<_i796.PropertyAccessBloc>(() => _i796.PropertyAccessBloc());
     gh.factory<_i822.BiometricsLocalModel>(
         () => _i822.BiometricsLocalModel(enabled: gh<bool>()));
+    gh.singleton<_i329.PropertyAccessRemoteDataSource>(
+        () => _i696.PropertyAccessRemoteDataSourceImpl());
     gh.factory<_i597.SignInLocalModel>(
         () => _i597.SignInLocalModel(signedIn: gh<bool>()));
     gh.singleton<_i1059.VisitationSearchRemoteDataSource>(
@@ -117,9 +149,19 @@ extension GetItInjectableX on _i174.GetIt {
         _i480.VisitationSearchLoadVehicleRepositoryImpl(
             visitationSearchRemoteDataSource:
                 gh<_i1059.VisitationSearchRemoteDataSource>()));
+    gh.factory<_i477.PropertyAccessGetUnitsRepository>(() =>
+        _i262.PropertyAccessGetUnitsRepositoryImpl(
+            propertyAccessRemoteDataSource:
+                gh<_i329.PropertyAccessRemoteDataSource>()));
     gh.singleton<_i74.VehicleSearchDataSource>(
         () => _i645.VehicleSearchDataSourceImpl());
+    gh.singleton<_i554.PropertiesRemoteDataSource>(
+        () => _i427.PropertiesRemoteDataSourceImpl());
     gh.factory<_i274.DashboardService>(() => _i83.DashboardServiceImpl());
+    gh.factory<_i892.PropertyAccessGetUnitsUseCase>(() =>
+        _i892.PropertyAccessGetUnitsUseCase(
+            propertyAccessGetUnitsRepository:
+                gh<_i477.PropertyAccessGetUnitsRepository>()));
     gh.factory<_i262.DashboardGetVisitationsRepository>(() =>
         _i351.DashboardGetVisitationsRepositoryImpl(
             dashboardService: gh<_i274.DashboardService>()));
@@ -139,8 +181,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i171.SignInClickedRepository>(() =>
         _i673.SignInClickedRepositoryImpl(
             signInService: gh<_i1054.SignInService>()));
+    gh.factory<_i796.PropertyAccessBloc>(() => _i796.PropertyAccessBloc(
+        propertyAccessGetUnitsUseCase:
+            gh<_i892.PropertyAccessGetUnitsUseCase>()));
     gh.factory<_i845.SignInClickedUseCase>(() => _i845.SignInClickedUseCase(
         signInClickedRepository: gh<_i171.SignInClickedRepository>()));
+    gh.factory<_i472.PropertiesDeleteBlockRepository>(() =>
+        _i640.PropertiesDeleteBlockRepositoryImpl(
+            propertiesRemoteDataSource:
+                gh<_i554.PropertiesRemoteDataSource>()));
+    gh.factory<_i1042.PropertiesGetBlocksRepository>(() =>
+        _i375.PropertiesGetBlocksRepositoryImpl(
+            propertiesRemoteDataSource:
+                gh<_i554.PropertiesRemoteDataSource>()));
     gh.factory<_i1017.VehicleSearchValueChangedRepository>(() =>
         _i274.VehicleSearchValueChangedRepositoryImpl(
             vehicleSearchDataSource: gh<_i74.VehicleSearchDataSource>()));
@@ -148,6 +201,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i583.VisitationSearchValueChangedRepositoryImpl(
             visitationSearchRemoteDataSource:
                 gh<_i1059.VisitationSearchRemoteDataSource>()));
+    gh.factory<_i142.PropertiesAddBlockClickedRepository>(() =>
+        _i498.PropertiesAddBlockClickedRepositoryImpl(
+            propertiesRemoteDataSource:
+                gh<_i554.PropertiesRemoteDataSource>()));
     gh.factory<_i532.VehicleSearchLoadVisitationRepository>(() =>
         _i456.VehicleSearchLoadVisitationRepositoryImpl(
             vehicleSearchDataSource: gh<_i74.VehicleSearchDataSource>()));
@@ -155,6 +212,10 @@ extension GetItInjectableX on _i174.GetIt {
         _i546.DashboardPageLoadVisitationVehicleUseCase(
             dashboardPageLoadVisitationVehicleRepository:
                 gh<_i261.DashboardPageLoadVisitationVehicleRepository>()));
+    gh.factory<_i790.PropertiesGetBlocksUseCase>(() =>
+        _i790.PropertiesGetBlocksUseCase(
+            propertiesGetBlocksRepository:
+                gh<_i1042.PropertiesGetBlocksRepository>()));
     gh.factory<_i356.DashboardBloc>(() => _i356.DashboardBloc(
           get2DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
           get3DaysBackVisitations: gh<_i591.DashboardGetVisitationsUseCase>(),
@@ -176,6 +237,14 @@ extension GetItInjectableX on _i174.GetIt {
         _i950.VehicleSearchLoadVisitationUseCase(
             vehicleSearchLoadVisitationRepository:
                 gh<_i532.VehicleSearchLoadVisitationRepository>()));
+    gh.factory<_i888.PropertiesDeleteBlockUseCase>(() =>
+        _i888.PropertiesDeleteBlockUseCase(
+            propertiesDeleteBlockRepository:
+                gh<_i472.PropertiesDeleteBlockRepository>()));
+    gh.factory<_i403.PropertiesAddBlockClickedUseCase>(() =>
+        _i403.PropertiesAddBlockClickedUseCase(
+            propertiesAddBlockClickedRepository:
+                gh<_i142.PropertiesAddBlockClickedRepository>()));
     gh.factory<_i1022.LoginBloc>(() => _i1022.LoginBloc(
         signInClickedUseCase: gh<_i845.SignInClickedUseCase>()));
     gh.factory<_i545.VehicleSearchBloc>(() => _i545.VehicleSearchBloc(
@@ -188,6 +257,13 @@ extension GetItInjectableX on _i174.GetIt {
         _i500.VisitationSearchValueChangedUseCase(
             visitationSearchValueChangedRepository:
                 gh<_i729.VisitationSearchValueChangedRepository>()));
+    gh.factory<_i304.PropertiesBloc>(() => _i304.PropertiesBloc(
+          propertiesAddBlockClickedUseCase:
+              gh<_i403.PropertiesAddBlockClickedUseCase>(),
+          propertiesGetBlocksUseCase: gh<_i790.PropertiesGetBlocksUseCase>(),
+          propertiesDeleteBlockUseCase:
+              gh<_i888.PropertiesDeleteBlockUseCase>(),
+        ));
     gh.factory<_i486.VisitationSearchBloc>(() => _i486.VisitationSearchBloc(
           visitationSearchLoadVehicleUseCase:
               gh<_i340.VisitationSearchLoadVehicleUseCase>(),

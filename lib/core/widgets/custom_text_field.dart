@@ -38,7 +38,11 @@ class CustomTextField<BaseBloc,BaseState> extends StatelessWidget {
         onChanged:  onChanged,
         onTap:()=> onTap!= null ?onTap!():null,
         enabled: enable ,
-        validator: this.validator ,
+        validator: this.validator?? (value){
+          if(value == null || value!.isEmpty){
+            return "Please enter value before proceeding";
+          }
+        },
         style: textStyleLabel(),
         obscureText: obscure?? false,
         controller: controller,

@@ -24,6 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "VehicleDetails":
             MessageLookupByLibrary.simpleMessage("Vehicle Details"),
+        "addBlock": MessageLookupByLibrary.simpleMessage("Add Block"),
+        "addNewBlock": MessageLookupByLibrary.simpleMessage("Add New Block"),
+        "addNewUnit": MessageLookupByLibrary.simpleMessage("Add New Unit"),
+        "addUnit": MessageLookupByLibrary.simpleMessage("Add New Unit"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appName": MessageLookupByLibrary.simpleMessage(
             "Secure Access Administrator "),
@@ -32,6 +36,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "bike": MessageLookupByLibrary.simpleMessage("Bike"),
         "biometrics": MessageLookupByLibrary.simpleMessage("Biometrics"),
+        "blockAddedSuccessful":
+            MessageLookupByLibrary.simpleMessage("Block added successfully"),
+        "blockName": MessageLookupByLibrary.simpleMessage("Block Name"),
+        "blockNumber": MessageLookupByLibrary.simpleMessage("Block Number"),
+        "blockSection": MessageLookupByLibrary.simpleMessage("Block Section"),
+        "blocks": MessageLookupByLibrary.simpleMessage("Blocks"),
         "bus": MessageLookupByLibrary.simpleMessage("Bus"),
         "captureVehicleDetails":
             MessageLookupByLibrary.simpleMessage("Capture vehicle details"),
@@ -136,6 +146,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a password"),
         "pleaseEnterAValidEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email address"),
+        "pleaseEnterAValueBeforeProceeding":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a value before proceeding"),
         "pleaseEnterEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter an email address"),
         "pleaseEnterUserName": MessageLookupByLibrary.simpleMessage(
@@ -149,8 +162,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Reset "),
         "resetYourPassword":
             MessageLookupByLibrary.simpleMessage("Reset Your Password "),
+        "residenceBlock":
+            MessageLookupByLibrary.simpleMessage("Residence Block"),
         "scanAgain": MessageLookupByLibrary.simpleMessage("Scan again"),
         "scanError": MessageLookupByLibrary.simpleMessage("Scan Error"),
+        "section": MessageLookupByLibrary.simpleMessage("Section"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In "),
         "signInUsing": MessageLookupByLibrary.simpleMessage("Sign in using"),
@@ -169,7 +185,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "time": MessageLookupByLibrary.simpleMessage("Time:"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "truck": MessageLookupByLibrary.simpleMessage("Truck"),
+        "unit": MessageLookupByLibrary.simpleMessage("Unit"),
         "unitVisited": MessageLookupByLibrary.simpleMessage("Unit visited"),
+        "units": MessageLookupByLibrary.simpleMessage("Units"),
         "username": MessageLookupByLibrary.simpleMessage("Username "),
         "vehicle": MessageLookupByLibrary.simpleMessage("Vehicle"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
