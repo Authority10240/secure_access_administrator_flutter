@@ -3,6 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:secure_access_administrator/core/base_classes/base_page.dart';
 import 'package:secure_access_administrator/core/base_classes/base_state.dart';
@@ -49,9 +51,16 @@ class _ResidentsPageState extends BasePageState<ResidentsPage, ResidentsBloc> {
   final TextEditingController _residentPhoneNumberController = TextEditingController();
   final TextEditingController _residentTypeController = TextEditingController();
 
-    @override
+
+  @override
   PreferredSizeWidget? buildAppbar() {
-    return null;
+    return AppBar(
+      leading: InkWell(child:  HeroIcon(HeroIcons.chevronLeft, color: AppColorScheme.primary,),
+        onTap: ()=> Get.back(),),
+      backgroundColor: Colors.white,
+
+    );
+
   }
 
   @override
@@ -113,7 +122,7 @@ class _ResidentsPageState extends BasePageState<ResidentsPage, ResidentsBloc> {
                                                                .elementAt(
                                                                index)
                                                                .data();
-                                                           String? unitId =
+                                                           String? residentId =
                                                                snapshot.data
                                                                    ?.docs
                                                                    .elementAt(

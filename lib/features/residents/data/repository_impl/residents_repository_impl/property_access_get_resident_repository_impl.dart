@@ -21,7 +21,7 @@ class PropertyAccessGetresidentRepositoryImpl extends PropertyAccessGetresidentR
     required Function(BaseFailure? error)? onError}) async {
     await safeBackEndCalls(apiRequest: residentRemoteDataSource.getResidents(
         blockId: params!.blockId,
-        unitId: params!.blockId),
+        unitId: params!.unitId),
         onSuccess: (model)=> onSuccess!(model),
         onError: (error)=> onError!(error));
   }
