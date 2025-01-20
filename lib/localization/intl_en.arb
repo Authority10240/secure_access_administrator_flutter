@@ -126,10 +126,19 @@
   "pleaseEnterAValueBeforeProceeding": "Please enter a value before proceeding",
   "units": "Units",
   "addNewUnit": "Add New Unit",
-  "addUnit": "Add New Unit",
+  "addUnit": "Add Unit",
   "unit": "Unit",
-  "section": "Section"
-
+  "section": "Section",
+  "residentName": "Resident name",
+  "residentSurname": "Resident surname",
+  "residentId":"Resident ID",
+  "residentEmail": "Resident email",
+  "residentPhoneNumber": "Resident phone number",
+  "residentType": "Resident type",
+  "email": "Email",
+  "residents": "Residents",
+  "addNewResident": "Add New Resident",
+  "addResident": "Add Resident"
 
 
 }

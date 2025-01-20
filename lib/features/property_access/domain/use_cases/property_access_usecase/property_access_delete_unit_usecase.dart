@@ -1,8 +1,3 @@
-
-
-
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:injectable/injectable.dart';
 import 'package:secure_access_administrator/core/base_classes/base_usecase.dart';
 import 'package:secure_access_administrator/core/failures/base_failure.dart';

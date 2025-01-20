@@ -26,8 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vehicle Details"),
         "addBlock": MessageLookupByLibrary.simpleMessage("Add Block"),
         "addNewBlock": MessageLookupByLibrary.simpleMessage("Add New Block"),
+        "addNewResident":
+            MessageLookupByLibrary.simpleMessage("Add New Resident"),
         "addNewUnit": MessageLookupByLibrary.simpleMessage("Add New Unit"),
-        "addUnit": MessageLookupByLibrary.simpleMessage("Add New Unit"),
+        "addResident": MessageLookupByLibrary.simpleMessage("Add Resident"),
+        "addUnit": MessageLookupByLibrary.simpleMessage("Add Unit"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "appName": MessageLookupByLibrary.simpleMessage(
             "Secure Access Administrator "),
@@ -67,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "doubleTapToOpenClose":
             MessageLookupByLibrary.simpleMessage("Double tap to open/close"),
         "drivein": MessageLookupByLibrary.simpleMessage("Drive in"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("Email Address * "),
         "enableBiometrics":
@@ -164,6 +168,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reset Your Password "),
         "residenceBlock":
             MessageLookupByLibrary.simpleMessage("Residence Block"),
+        "residentEmail": MessageLookupByLibrary.simpleMessage("Resident email"),
+        "residentId": MessageLookupByLibrary.simpleMessage("Resident ID"),
+        "residentName": MessageLookupByLibrary.simpleMessage("Resident name"),
+        "residentPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Resident phone number"),
+        "residentSurname":
+            MessageLookupByLibrary.simpleMessage("Resident surname"),
+        "residentType": MessageLookupByLibrary.simpleMessage("Resident type"),
+        "residents": MessageLookupByLibrary.simpleMessage("Residents"),
         "scanAgain": MessageLookupByLibrary.simpleMessage("Scan again"),
         "scanError": MessageLookupByLibrary.simpleMessage("Scan Error"),
         "section": MessageLookupByLibrary.simpleMessage("Section"),

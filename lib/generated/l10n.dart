@@ -1302,10 +1302,10 @@ class AppLocalizations {
     );
   }
 
-  /// `Add New Unit`
+  /// `Add Unit`
   String get addUnit {
     return Intl.message(
-      'Add New Unit',
+      'Add Unit',
       name: 'addUnit',
       desc: '',
       args: [],
@@ -1327,6 +1327,106 @@ class AppLocalizations {
     return Intl.message(
       'Section',
       name: 'section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident name`
+  String get residentName {
+    return Intl.message(
+      'Resident name',
+      name: 'residentName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident surname`
+  String get residentSurname {
+    return Intl.message(
+      'Resident surname',
+      name: 'residentSurname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident ID`
+  String get residentId {
+    return Intl.message(
+      'Resident ID',
+      name: 'residentId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident email`
+  String get residentEmail {
+    return Intl.message(
+      'Resident email',
+      name: 'residentEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident phone number`
+  String get residentPhoneNumber {
+    return Intl.message(
+      'Resident phone number',
+      name: 'residentPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident type`
+  String get residentType {
+    return Intl.message(
+      'Resident type',
+      name: 'residentType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Residents`
+  String get residents {
+    return Intl.message(
+      'Residents',
+      name: 'residents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Resident`
+  String get addNewResident {
+    return Intl.message(
+      'Add New Resident',
+      name: 'addNewResident',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Resident`
+  String get addResident {
+    return Intl.message(
+      'Add Resident',
+      name: 'addResident',
       desc: '',
       args: [],
     );

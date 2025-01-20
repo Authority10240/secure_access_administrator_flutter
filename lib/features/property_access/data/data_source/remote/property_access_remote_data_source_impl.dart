@@ -17,11 +17,11 @@ class PropertyAccessRemoteDataSourceImpl extends PropertyAccessRemoteDataSource{
           FirebaseFirestore.instance.
           collection(property_blocks).
           doc(blockId).
-          collection(property_blocks)
+          collection(property_units)
               .withConverter<
-              SecureAccessPropertiesModel>
+              SecureAccessUnitsModel>
             (fromFirestore: (snapShot, _) =>
-              SecureAccessPropertiesModel.fromJson(snapShot.data()!),
+              SecureAccessUnitsModel.fromJson(snapShot.data()!),
               toFirestore: (blocks, _) => blocks.toJson());
 
       await _unitsRef.add(model);
@@ -47,7 +47,7 @@ class PropertyAccessRemoteDataSourceImpl extends PropertyAccessRemoteDataSource{
   Future<Stream<QuerySnapshot<SecureAccessUnitsModel?>>> propertiesGetUnits({required String blockId}) async{
     try{
       CollectionReference<SecureAccessUnitsModel> _unitsRef =
-      FirebaseFirestore.instance.collection(property_blocks).doc().collection(property_units)
+      FirebaseFirestore.instance.collection(property_blocks).doc(blockId).collection(property_units)
           .withConverter<SecureAccessUnitsModel>(
           fromFirestore: (snapShot,_)=> SecureAccessUnitsModel.fromJson(snapShot.data()!),
           toFirestore:(dashboardPageLoadVisitationsModel, _ )=> dashboardPageLoadVisitationsModel.toJson());

@@ -17,9 +17,11 @@ class PropertyAccessAddUnitUseCase extends BaseUseCase<PropertyAccessAddUnitUseC
   Future<void> call({
     required Function(bool? model)? onSuccess,
     required Function(BaseFailure? error)? onError,
-    PropertyAccessAddUnitUseCaseParams? params}) {
-    // TODO: implement call
-    throw UnimplementedError();
+    PropertyAccessAddUnitUseCaseParams? params}) async {
+    await propertyAccessAddUnitRepository.call(
+        onSuccess:(model)=>onSuccess!(model)
+        , onError: (error)=> onError!(error),
+    params: PropertyAccessAddUnitRepositoryParams(secureAccessUnitsModel: params!.secureAccessUnitsModel, blockId: params!.blockId));
   }
 }
 

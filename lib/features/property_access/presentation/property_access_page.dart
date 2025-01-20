@@ -14,6 +14,7 @@ import 'package:secure_access_administrator/core/text_styles.dart';
 import 'package:secure_access_administrator/core/widgets/custom_form_button.dart';
 import 'package:secure_access_administrator/core/widgets/custom_text_field.dart';
 import 'package:secure_access_administrator/core/widgets/preloader_widget.dart';
+import 'package:secure_access_administrator/features/residents/presentation/residents_page.dart';
 import 'package:secure_access_administrator/generated/l10n.dart';
 import 'package:secure_access_repository/models/secure_access_property_model/secure_access_properties_model.dart';
 import 'package:secure_access_repository/models/secure_access_units_model/secure_access_units_model.dart';
@@ -151,7 +152,7 @@ class _PropertyAccessPageState extends BasePageState<PropertyAccessPage, Propert
                                                                                getBloc().add(PropertyAccessDeleteUnitEvent(blockId: widget.blockId, unitId: unitId!));
                                                                              },
                                                                            ),
-                                                                           SizedBox(width: 10,),
+                                                                           const SizedBox(width: 10,),
                                                                            InkWell(
                                                                              child:
                                                                              HeroIcon(
@@ -160,7 +161,9 @@ class _PropertyAccessPageState extends BasePageState<PropertyAccessPage, Propert
                                                                                AppColorScheme.primary,
                                                                              ),
                                                                              onTap:
-                                                                                 () {},
+                                                                                 () {
+                                                                               Get.to(ResidentsPage(blockId: widget.blockId, unitId: unitId!));
+                                                                                 },
                                                                            ),
                                                                          ],
                                                                        ),

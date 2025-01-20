@@ -74,14 +74,43 @@ import '../features/property_access/data/data_source/remote/property_access_remo
     as _i329;
 import '../features/property_access/data/data_source/remote/property_access_remote_data_source_impl.dart'
     as _i696;
+import '../features/property_access/data/repository_impl/property_access_repository_impl/property_access_add_unit_repository_impl.dart'
+    as _i313;
+import '../features/property_access/data/repository_impl/property_access_repository_impl/property_access_delete_unit_repository_impl.dart'
+    as _i989;
 import '../features/property_access/data/repository_impl/property_access_repository_impl/property_access_get_units_repository_impl.dart'
     as _i262;
+import '../features/property_access/domain/repository/property_access_repository/property_access_add_unit_repository.dart'
+    as _i512;
+import '../features/property_access/domain/repository/property_access_repository/property_access_delete_unit_repository.dart'
+    as _i844;
 import '../features/property_access/domain/repository/property_access_repository/property_access_get_units_repository.dart'
     as _i477;
+import '../features/property_access/domain/use_cases/property_access_usecase/property_access_add_unit_usecase.dart'
+    as _i944;
+import '../features/property_access/domain/use_cases/property_access_usecase/property_access_delete_unit_usecase.dart'
+    as _i12;
 import '../features/property_access/domain/use_cases/property_access_usecase/property_access_get_units_usecase.dart'
     as _i892;
 import '../features/property_access/presentation/bloc/property_access_bloc.dart'
     as _i796;
+import '../features/residents/data/data_source/remote/residents_remote_data_source.dart'
+    as _i70;
+import '../features/residents/data/data_source/remote/residents_remote_data_source_impl.dart'
+    as _i875;
+import '../features/residents/data/repository_impl/residents_repository_impl/property_access_add_resident_repository_impl.dart'
+    as _i673;
+import '../features/residents/data/repository_impl/residents_repository_impl/property_access_get_resident_repository_impl.dart'
+    as _i696;
+import '../features/residents/domain/repository/residents_repository/property_access_add_resident_repository.dart'
+    as _i806;
+import '../features/residents/domain/repository/residents_repository/property_access_get_resident_repository.dart'
+    as _i785;
+import '../features/residents/domain/use_cases/residents_usecase/property_access_add_resident_usecase.dart'
+    as _i571;
+import '../features/residents/domain/use_cases/residents_usecase/property_access_get_resident_usecase.dart'
+    as _i298;
+import '../features/residents/presentation/bloc/residents_bloc.dart' as _i996;
 import '../features/vehicle_search/data/data_source/remote/vehicle_search_data_source.dart'
     as _i74;
 import '../features/vehicle_search/data/data_source/remote/vehicle_search_data_source_impl.dart'
@@ -143,14 +172,23 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i696.PropertyAccessRemoteDataSourceImpl());
     gh.factory<_i597.SignInLocalModel>(
         () => _i597.SignInLocalModel(signedIn: gh<bool>()));
+    gh.singleton<_i70.ResidentRemoteDataSource>(
+        () => _i875.ResidentsRemoteDataSourceImpl());
     gh.singleton<_i1059.VisitationSearchRemoteDataSource>(
         () => _i646.VisitationSearchRemotedataSourceImple());
     gh.factory<_i705.VisitationSearchLoadVehicleRepository>(() =>
         _i480.VisitationSearchLoadVehicleRepositoryImpl(
             visitationSearchRemoteDataSource:
                 gh<_i1059.VisitationSearchRemoteDataSource>()));
+    gh.factory<_i806.PropertyAccessAddResidentRepository>(() =>
+        _i673.PropertyAccessAddResidentRepositoryImpl(
+            residentRemoteDataSource: gh<_i70.ResidentRemoteDataSource>()));
     gh.factory<_i477.PropertyAccessGetUnitsRepository>(() =>
         _i262.PropertyAccessGetUnitsRepositoryImpl(
+            propertyAccessRemoteDataSource:
+                gh<_i329.PropertyAccessRemoteDataSource>()));
+    gh.factory<_i844.PropertyAccessDeleteUnitRepository>(() =>
+        _i989.PropertyAccessDeleteUnitRepositoryImpl(
             propertyAccessRemoteDataSource:
                 gh<_i329.PropertyAccessRemoteDataSource>()));
     gh.singleton<_i74.VehicleSearchDataSource>(
@@ -162,6 +200,26 @@ extension GetItInjectableX on _i174.GetIt {
         _i892.PropertyAccessGetUnitsUseCase(
             propertyAccessGetUnitsRepository:
                 gh<_i477.PropertyAccessGetUnitsRepository>()));
+    gh.factory<_i785.PropertyAccessGetresidentRepository>(() =>
+        _i696.PropertyAccessGetresidentRepositoryImpl(
+            residentRemoteDataSource: gh<_i70.ResidentRemoteDataSource>()));
+    gh.factory<_i12.PropertyAccessDeleteUnitUseCase>(() =>
+        _i12.PropertyAccessDeleteUnitUseCase(
+            propertyAccessDeleteUnitRepository:
+                gh<_i844.PropertyAccessDeleteUnitRepository>()));
+    gh.factory<_i844.PropertyAccessDeleteUnitRepositoryParams>(
+        () => _i844.PropertyAccessDeleteUnitRepositoryParams(
+              unitId: gh<String>(),
+              blockId: gh<String>(),
+            ));
+    gh.factory<_i512.PropertyAccessAddUnitRepository>(() =>
+        _i313.PropertyAccessAddUnitRepositoryImpl(
+            propertyAccessRemoteDataSource:
+                gh<_i329.PropertyAccessRemoteDataSource>()));
+    gh.factory<_i944.PropertyAccessAddUnitUseCase>(() =>
+        _i944.PropertyAccessAddUnitUseCase(
+            propertyAccessAddUnitRepository:
+                gh<_i512.PropertyAccessAddUnitRepository>()));
     gh.factory<_i262.DashboardGetVisitationsRepository>(() =>
         _i351.DashboardGetVisitationsRepositoryImpl(
             dashboardService: gh<_i274.DashboardService>()));
@@ -178,14 +236,19 @@ extension GetItInjectableX on _i174.GetIt {
         _i340.VisitationSearchLoadVehicleUseCase(
             visitationSearchLoadVehicleRepository:
                 gh<_i705.VisitationSearchLoadVehicleRepository>()));
+    gh.factory<_i571.PropertyAccessAddResidentUseCase>(() =>
+        _i571.PropertyAccessAddResidentUseCase(
+            propertyAccessAddResidentRepository:
+                gh<_i806.PropertyAccessAddResidentRepository>()));
     gh.factory<_i171.SignInClickedRepository>(() =>
         _i673.SignInClickedRepositoryImpl(
             signInService: gh<_i1054.SignInService>()));
-    gh.factory<_i796.PropertyAccessBloc>(() => _i796.PropertyAccessBloc(
-        propertyAccessGetUnitsUseCase:
-            gh<_i892.PropertyAccessGetUnitsUseCase>()));
     gh.factory<_i845.SignInClickedUseCase>(() => _i845.SignInClickedUseCase(
         signInClickedRepository: gh<_i171.SignInClickedRepository>()));
+    gh.factory<_i298.PropertyAccessGetresidentUseCase>(() =>
+        _i298.PropertyAccessGetresidentUseCase(
+            propertyAccessGetresidentRepository:
+                gh<_i785.PropertyAccessGetresidentRepository>()));
     gh.factory<_i472.PropertiesDeleteBlockRepository>(() =>
         _i640.PropertiesDeleteBlockRepositoryImpl(
             propertiesRemoteDataSource:
@@ -197,6 +260,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1017.VehicleSearchValueChangedRepository>(() =>
         _i274.VehicleSearchValueChangedRepositoryImpl(
             vehicleSearchDataSource: gh<_i74.VehicleSearchDataSource>()));
+    gh.factory<_i796.PropertyAccessBloc>(() => _i796.PropertyAccessBloc(
+          propertyAccessGetUnitsUseCase:
+              gh<_i892.PropertyAccessGetUnitsUseCase>(),
+          propertyAccessDeleteUnitUseCase:
+              gh<_i12.PropertyAccessDeleteUnitUseCase>(),
+          propertyAccessAddUnitUseCase:
+              gh<_i944.PropertyAccessAddUnitUseCase>(),
+        ));
     gh.factory<_i729.VisitationSearchValueChangedRepository>(() =>
         _i583.VisitationSearchValueChangedRepositoryImpl(
             visitationSearchRemoteDataSource:
@@ -228,6 +299,12 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i591.DashboardGetVisitationsUseCase>(),
           dashboardPageLoadVisitationVehicleUseCase:
               gh<_i546.DashboardPageLoadVisitationVehicleUseCase>(),
+        ));
+    gh.factory<_i996.ResidentsBloc>(() => _i996.ResidentsBloc(
+          propertyAccessAddResidentUseCase:
+              gh<_i571.PropertyAccessAddResidentUseCase>(),
+          propertyAccessGetresidentUseCase:
+              gh<_i298.PropertyAccessGetresidentUseCase>(),
         ));
     gh.factory<_i165.VehicleSearchValueChangedUseCase>(() =>
         _i165.VehicleSearchValueChangedUseCase(
