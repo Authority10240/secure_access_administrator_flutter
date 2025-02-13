@@ -57,7 +57,22 @@ class _PropertyAccessPageState extends BasePageState<PropertyAccessPage, Propert
   @override
   Widget buildView(BuildContext context) {
     return BlocConsumer<PropertyAccessBloc, PropertyAccessPageState>(
-      listener: (context, state){},
+      listener: (context, state){
+
+        if(state is PropertyAccessAddUnitState ){
+          if(state.dataState == DataState.error){
+            Get.snackbar(state.errorCode!, state.errorMessage!);
+          }
+
+          if(state.dataState == DataState.success){
+            Get.snackbar(appLocalizations.success, appLocalizations.userSuccessfullyAdded);
+            _unitNameController.clear();
+            _unitNumberController.clear();
+          }
+
+
+        }
+      },
       builder: (context, state) {
          return   SingleChildScrollView(
              child: Card(

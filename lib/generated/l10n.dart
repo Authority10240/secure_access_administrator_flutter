@@ -1372,10 +1372,10 @@ class AppLocalizations {
     );
   }
 
-  /// `Resident phone number`
+  /// `Phone number`
   String get residentPhoneNumber {
     return Intl.message(
-      'Resident phone number',
+      'Phone number',
       name: 'residentPhoneNumber',
       desc: '',
       args: [],
@@ -1427,6 +1427,16 @@ class AppLocalizations {
     return Intl.message(
       'Add Resident',
       name: 'addResident',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Successfully Added`
+  String get userSuccessfullyAdded {
+    return Intl.message(
+      'User Successfully Added',
+      name: 'userSuccessfullyAdded',
       desc: '',
       args: [],
     );

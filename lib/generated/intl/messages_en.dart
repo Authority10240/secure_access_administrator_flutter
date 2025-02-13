@@ -172,7 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "residentId": MessageLookupByLibrary.simpleMessage("Resident ID"),
         "residentName": MessageLookupByLibrary.simpleMessage("Resident name"),
         "residentPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("Resident phone number"),
+            MessageLookupByLibrary.simpleMessage("Phone number"),
         "residentSurname":
             MessageLookupByLibrary.simpleMessage("Resident surname"),
         "residentType": MessageLookupByLibrary.simpleMessage("Resident type"),
@@ -201,6 +201,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unit": MessageLookupByLibrary.simpleMessage("Unit"),
         "unitVisited": MessageLookupByLibrary.simpleMessage("Unit visited"),
         "units": MessageLookupByLibrary.simpleMessage("Units"),
+        "userSuccessfullyAdded":
+            MessageLookupByLibrary.simpleMessage("User Successfully Added"),
         "username": MessageLookupByLibrary.simpleMessage("Username "),
         "vehicle": MessageLookupByLibrary.simpleMessage("Vehicle"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),

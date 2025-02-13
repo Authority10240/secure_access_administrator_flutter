@@ -66,7 +66,25 @@ class _ResidentsPageState extends BasePageState<ResidentsPage, ResidentsBloc> {
   @override
   Widget buildView(BuildContext context) {
     return BlocConsumer<ResidentsBloc, ResidentsPageState>(
-      listener: (context, state){},
+      listener: (context, state){
+        if(state is AddResidentClickedState ){
+          if(state.dataState == DataState.error){
+            Get.snackbar(state.errorCode!, state.errorMessage!);
+          }
+          
+          if(state.dataState == DataState.success){
+            Get.snackbar(appLocalizations.success, appLocalizations.userSuccessfullyAdded);
+            _residentTypeController.clear();
+            _residentPhoneNumberController.clear();
+            _residentEmailController.clear();
+            _residentIdController.clear();
+            _residentSurnameController.clear();
+            _residentNameController.clear();
+          }
+
+
+        }
+      },
       builder: (context, state) {
          return SingleChildScrollView(
              child: Card(
@@ -77,7 +95,7 @@ class _ResidentsPageState extends BasePageState<ResidentsPage, ResidentsBloc> {
                      Card(
                          elevation: 11,
                          child: SizedBox(
-                           width: MediaQuery.sizeOf(context).width /3,
+                           width: MediaQuery.sizeOf(context).width *0.65,
                            child: Padding(
                                padding: const EdgeInsets.all(20),
                                child: Column(children: [
@@ -144,31 +162,12 @@ class _ResidentsPageState extends BasePageState<ResidentsPage, ResidentsBloc> {
                                                                    textStyleSubHeading(),
                                                                  ),
                                                                  subtitle: Text(
-                                                                   '${appLocalizations.emailAddress}:${residents!.residentEmail??""} '
-                                                                       '${appLocalizations.residentPhoneNumber}:${residents!.residentSurname??"" }',
+                                                                   '${appLocalizations.emailAddress}:${residents!.residentEmail??""}\n'
+                                                                       '${appLocalizations.residentPhoneNumber}:${residents!.residentPhoneNumber??"" }',
                                                                    style:
                                                                    textStyleSubHeading(),
                                                                  ),
-                                                                 trailing: SizedBox(width: 60,
-                                                                   child: Row(
-                                                                     children: [
-                                                                       const SizedBox(width: 10,),
-                                                                       InkWell(
-                                                                         child:
-                                                                         HeroIcon(
-                                                                           HeroIcons.chevronRight,
-                                                                           color:
-                                                                           AppColorScheme.primary,
-                                                                         ),
-                                                                         onTap:
-                                                                             () {
 
-
-                                                                             },
-                                                                       ),
-                                                                     ],
-                                                                   ),
-                                                                 ),
                                                              onTap: (){
 
                                                              },),

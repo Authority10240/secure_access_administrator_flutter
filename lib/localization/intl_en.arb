@@ -133,12 +133,13 @@
   "residentSurname": "Resident surname",
   "residentId":"Resident ID",
   "residentEmail": "Resident email",
-  "residentPhoneNumber": "Resident phone number",
+  "residentPhoneNumber": "Phone number",
   "residentType": "Resident type",
   "email": "Email",
   "residents": "Residents",
   "addNewResident": "Add New Resident",
-  "addResident": "Add Resident"
+  "addResident": "Add Resident",
+  "userSuccessfullyAdded": "User Successfully Added"
 
 
 }
