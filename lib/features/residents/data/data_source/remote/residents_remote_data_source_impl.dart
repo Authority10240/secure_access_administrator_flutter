@@ -14,6 +14,12 @@ class ResidentsRemoteDataSourceImpl extends ResidentRemoteDataSource{
   @override
   Future<bool> addResident({required String blockId, required String unitId, required SecureAccessResidentModel secureAccessResidentModel})async {
     try {
+
+      UserCredential user =
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: secureAccessResidentModel.residentEmail!, password: secureAccessResidentModel.residentId!);
+
       _residentsRef =
           FirebaseFirestore.instance.
           collection(property_blocks).
@@ -27,10 +33,13 @@ class ResidentsRemoteDataSourceImpl extends ResidentRemoteDataSource{
 
       await _residentsRef.add(secureAccessResidentModel);
 
-  UserCredential user =
-  await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-          email: secureAccessResidentModel.residentEmail!, password: secureAccessResidentModel.residentId!);
+      _residentsRef = FirebaseFirestore.instance.collection(property_resident).doc(secureAccessResidentModel.residentEmail).collection(resident_details).
+      withConverter<
+          SecureAccessResidentModel>(fromFirestore: (snapshot,_)=> SecureAccessResidentModel.fromJson(snapshot.data()!),
+          toFirestore: (residents,_) => residents.toJson());
+      await _residentsRef.add(secureAccessResidentModel);
+
+
       return true;
 
     }catch(ex){
